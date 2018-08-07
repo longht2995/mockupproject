@@ -31,6 +31,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zhtml.Object;
 
+import vn.greenglobal.front.service.HeaderService;
 import vn.toancauxanh.cms.service.BannerService;
 import vn.toancauxanh.cms.service.CapBanHanhService;
 import vn.toancauxanh.cms.service.ChuDeVideoService;
@@ -455,6 +456,9 @@ public class Entry extends BaseObject<Object> {
 	}
 	public final HoiDapService getHoiDap() {
 		return new HoiDapService();
+	}
+	public final HeaderService getHeaderService() {
+		return new HeaderService();
 	}
 	public final List<String> getNoiDungActive() {
 		return Arrays.asList("chude", "baiviet", "video", "gallery", "linhvuchoidap", "hoidaptructuyen", "faqcategory",

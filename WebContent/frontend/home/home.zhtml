@@ -1,6 +1,9 @@
 <section xmlns:zk="zk" xmlns:z="zul" xmlns:n="native">
 	<zscript><![CDATA[
 		homes = entry.homes;
+		tinbaiPB= entry.tinBais;
+		hd= entry.headerService;
+		thamso = entry.thamSos;
 	]]></zscript>
 	<p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
 	<div class="row">
@@ -10,83 +13,96 @@
             	style="margin-bottom:15px;" width="100%"></n:img>
           <div class="tintuc-noibat">
               <!--Start Slide Image-->
-             
+             <div class="row">
+                <div class="col-md-8 bd-slide">
+                  <div class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                      <div class="${forEachStatus.first ? 'carousel-item active' :  'carousel-item'}" zk:forEach="${tinbaiPB.getListTinBaiSlide().limit(3).fetch()}">
+                        <div zk:if="${not empty each.categories}">
+                        	<n:img class="img-slide" src="/files${each.avatarImage.imageUrl}" width="100%"></n:img>
+	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" class="title-noibat">${each.title}</a>
+	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" class="baiviet-mota">${each.description}</a>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="tintuc-nho-noibat">
+                    <div class="item-tintuc" zk:forEach="${tinbaiPB.getListTinBaiSlide().offset(3).limit(5).fetch()}" zk:if="${not empty each.categories}">
+                        <div class="item-content" >
+                          <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!--End Slide Image-->
             </div>
             <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftMidle.bannerUrl != null}" 
             	src="/files${homes.targetQueryBannerLeftMidle.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
             <div class="row" style="margin-top:15px;">
+            <!-- Chu de thuong truc HDND -->
               <div class="col-md-6 fixpadding-right">
                 <div class="title-tintuc">
-                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                	<span>
+                		<img class="logo-title" src="../assetsfe/images/icon-svg.svg">
+                	</span>
+                	<a href="#" class="title-mg">
+                		${thamso.chuDeHDNDHuyen ne null ?
+                		thamso.chuDeHDNDHuyen.name : 'THƯỜNG TRỰC HDND
+                		HUYỆN'}
+                	</a>
                 </div>
-				
                 <div class="tintuc-content">
-                  <div class="item-tintuc">
-                      <div class="item-img">
-                        <img src="images/s_hdndhuyen2_1499843774462.jpg" width="120px" height="80px">
+                  <div class="item-tintuc" zk:forEach="${tinbaiPB.getTop5ByThamSo(thamso.getChuDeHDNDHuyen().getMa())}">
+                      <div class="item-img" zk:if="${forEachStatus.first}">
+                        <n:img src="/files${each.avatarImage.imageUrl}" width="120px" height="80px"></n:img>
                       </div>
-                      <div class="item-content text-noibat">
-                        <a href="#">Khai mạc kỳ họp thứ Tư, HĐND huyện khóa X, nhiệm kỳ 2016-2021</a>
+                      <div class="item-content text-noibat" zk:if="${forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đoàn đại biểu Quốc hội đơn vị thành phố Đà Nẵng tiếp xúc cử tri huyện Hòa Vang</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Quy định giá đất ở đối với các đường chưa đặt tên tại các Khu dân cư trên địa bàn huyện Hòa Vang</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      <div class="item-content" zk:if="${!forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                   </div>
                 </div>
               </div>
+              <!-- End Chu de thuong truc HDND -->
+              <!-- Chu de thuong truc HDND -->
               <div class="col-md-6 fixpadding-left padding-rep">
                 <div class="title-tintuc">
-                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                	<span>
+                		<img class="logo-title" src="../assetsfe/images/icon-svg.svg">
+                	</span>
+                	<a href="#" class="title-mg">
+                		${thamso.cacBanHDNDHuyen ne null ?
+                		thamso.cacBanHDNDHuyen.name : 'CÁC BAN THƯỜNG TRỰC HDND HUYỆN'}
+                	</a>
                 </div>
                 <div class="tintuc-content">
-                  <div class="item-tintuc">
-                      <div class="item-img">
-                        <img src="images/anh1.jpg" width="120px" height="80px">
+                  <div class="item-tintuc" zk:forEach="${tinbaiPB.getTop5ByThamSo(thamso.getCacBanHDNDHuyen().getMa())}">
+                      <div class="item-img" zk:if="${forEachStatus.first}">
+                        <n:img src="/files${each.avatarImage.imageUrl}" width="120px" height="80px"></n:img>
                       </div>
-                      <div class="item-content text-noibat">
-                        <a href="#">Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân</a>
+                      <div class="item-content text-noibat" zk:if="${forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Hòa Nhơn: đa dạng hóa các hình thức tuyên truyền về thực hiện chương trình “Thành phố 4 an”</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      <div class="item-content" zk:if="${!forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                   </div>
                 </div>
               </div>
+              <!-- End Chu de ban thuong truc HDND -->
             </div>
             <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftBottom.bannerUrl != null}" 
             	src="/files${homes.targetQueryBannerLeftBottom.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
@@ -94,70 +110,49 @@
             <div class="row" style="margin-top:15px;">
               <div class="col-md-6 fixpadding-right">
                 <div class="title-tintuc">
-                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                	<<span>
+                		<img class="logo-title" src="../assetsfe/images/icon-svg.svg">
+                	</span>
+                	<a href="#" class="title-mg">
+                		${thamso.getHDNDXa() ne null ?
+                		thamso.getHDNDXa().getName() : 'HDND XÃ'}
+                	</a>
                 </div>
                 <div class="tintuc-content">
-                  <div class="item-tintuc">
-                      <div class="item-img">
-                        <img src="images/s_hdndhuyen2_1499843774462.jpg" width="120px" height="80px">
+                  <div class="item-tintuc" zk:forEach="${tinbaiPB.getTop5ByThamSo(thamso.getHDNDXa().getMa())}">
+                      <div class="item-img" zk:if="${forEachStatus.first}">
+                        <n:img src="/files${each.avatarImage.imageUrl}" width="120px" height="80px"></n:img>
                       </div>
-                      <div class="item-content text-noibat">
-                        <a href="#">Khai mạc kỳ họp thứ Tư, HĐND huyện khóa X, nhiệm kỳ 2016-2021</a>
+                      <div class="item-content text-noibat" zk:if="${forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đoàn đại biểu Quốc hội đơn vị thành phố Đà Nẵng tiếp xúc cử tri huyện Hòa Vang</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Quy định giá đất ở đối với các đường chưa đặt tên tại các Khu dân cư trên địa bàn huyện Hòa Vang</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      <div class="item-content" zk:if="${!forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                   </div>
                 </div>
               </div>
+              <!-- End -->
               <div class="col-md-6 fixpadding-left padding-rep">
                 <div class="title-tintuc">
-                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                	<span>
+                		<img class="logo-title" src="../assetsfe/images/icon-svg.svg">
+                	</span>
+                	<a href="#" class="title-mg">
+                		${thamso.getGiamSatCuaHDND() ne null ?
+                		thamso.getGiamSatCuaHDND().getName() : 'GIÁM SÁT CỦA HDND'}
+                	</a>
                 </div>
                 <div class="tintuc-content">
-                  <div class="item-tintuc">
-                      <div class="item-img">
-                        <img src="images/anh1.jpg" width="120px" height="80px">
+                  <div class="item-tintuc" zk:forEach="${tinbaiPB.getTop5ByThamSo(thamso.getGiamSatCuaHDND().getMa())}">
+                      <div class="item-img" zk:if="${forEachStatus.first}">
+                        <n:img src="/files${each.avatarImage.imageUrl}" width="120px" height="80px"></n:img>
                       </div>
-                      <div class="item-content text-noibat">
-                        <a href="#">Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân</a>
+                      <div class="item-content text-noibat" zk:if="${forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Hòa Nhơn: đa dạng hóa các hình thức tuyên truyền về thực hiện chương trình “Thành phố 4 an”</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
-                      </div>
-                  </div>
-                  <div class="item-tintuc">
-                      <div class="item-content">
-                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      <div class="item-content" zk:if="${!forEachStatus.first}">
+                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                   </div>
                 </div>

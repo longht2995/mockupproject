@@ -1,0 +1,45 @@
+<window xmlns:zk="zk" xmlns:n="native" title="${arg.save}" id="wdn" border="normal" xmlns:x="xhtml" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init(arg.model)" validationMessages="@id('vmsgs')" action="show: slideIn"
+	mode="modal" contentStyle="overflow:auto;" closable="true" width="800px"
+	onClose="@command('invokeGG', notify=vmArgs, detach=wdn, attr='model')"
+	whatever="@load(true,after='saveChuDeMain') @converter('vn.toancauxanh.service.DetachConverter')" >
+	<zscript>
+		vmArgs = arg.get("vmArgs");
+	</zscript>
+	<div class="row box-body">
+		<div zclass="col-lg-12">
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>Tên lĩnh vực<n:small class="required"> *</n:small></x:label>
+				</hlayout>
+				<vlayout>
+					<textbox width="100%" class="form-control" maxlength="150"
+						value="@load(vm.tenLinhVuc) @save(vm.tenLinhVuc, before={'saveLinhVuc'})" />
+					<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
+				</vlayout>
+			</div>
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>Mô tả</x:label>
+				</hlayout>
+				<vlayout>
+					<textbox width="100%" rows="5" maxlength="250" value="@bind(vm.moTa)" />
+				</vlayout>
+			</div>
+			<div zclass="form-group">
+				<vlayout>
+					<checkbox label="Áp dụng" checked="@bind(vm.checkApDung)" />
+				</vlayout>
+			</div>
+		</div>
+	</div>
+	<div class="row box-footer">
+		<x:button class="btn btn-primary" visible="@load(entry.quyen.hoidap_sua or (vm.noId() and entry.quyen.hoidap_them))"
+			onClick="@command('saveLinhVuc',list=vmArgs, wdn=wdn)">
+			<n:i class="fa fa-save"></n:i> Lưu 
+		</x:button>&#160;
+		<x:button class="btn default" onClick="@command('invokeGG', notify=vmArgs, detach=wdn, attr='model')">
+			<n:i ></n:i> Hủy
+		</x:button>&#160;
+	</div>
+</window>

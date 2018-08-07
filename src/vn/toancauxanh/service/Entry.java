@@ -36,11 +36,14 @@ import vn.toancauxanh.cms.service.CapBanHanhService;
 import vn.toancauxanh.cms.service.ChuDeVideoService;
 import vn.toancauxanh.cms.service.CoQuanBanHanhService;
 import vn.toancauxanh.cms.service.DanhMucService;
+import vn.toancauxanh.cms.service.HoiDapService;
 import vn.toancauxanh.cms.service.HomeService;
 import vn.toancauxanh.cms.service.ImageService;
 import vn.toancauxanh.cms.service.LanguageService;
+import vn.toancauxanh.cms.service.LinhVucHoiDapService;
 import vn.toancauxanh.cms.service.LinhVucVanBanService;
 import vn.toancauxanh.cms.service.LoaiVanBanService;
+import vn.toancauxanh.cms.service.ThamSoService;
 import vn.toancauxanh.cms.service.ThongBaoService;
 import vn.toancauxanh.cms.service.TinBaiService;
 import vn.toancauxanh.cms.service.VanBanService;
@@ -187,6 +190,8 @@ public class Entry extends BaseObject<Object> {
 	public String HOIDAPXOA = "";
 	@Value("${url.hoidap}" + ":" + "${action.sua}")
 	public String HOIDAPSUA = "";
+	@Value("${url.hoidap}" + ":" + "${action.xuatban}")
+	public String HOIDAPXUATBAN = "";
 
 	@Value("${url.chudevideo}" + ":" + "${action.xem}")
 	public String CHUDEVIDEOXEM = "";
@@ -441,6 +446,15 @@ public class Entry extends BaseObject<Object> {
 	}
 	public final TinBaiService getTinBais() {
 		return new TinBaiService();
+	}
+	public final ThamSoService getThamSos() {
+		return new ThamSoService();
+	}
+	public final LinhVucHoiDapService getLinhVucHoiDap() {
+		return new LinhVucHoiDapService();
+	}
+	public final HoiDapService getHoiDap() {
+		return new HoiDapService();
 	}
 	public final List<String> getNoiDungActive() {
 		return Arrays.asList("chude", "baiviet", "video", "gallery", "linhvuchoidap", "hoidaptructuyen", "faqcategory",

@@ -139,4 +139,12 @@ public final class NhanVienService extends BasicService<NhanVien> {
 		}
 		BindUtils.postNotifyChange(null, null, this, "tacGiasTimKiem");
 	}
+	public List<NhanVien> getListDaiBieuAndNull(){
+		VaiTro vaiTro = em().find(VaiTro.class, 3l);
+		List<NhanVien> listDaiBieu = find(NhanVien.class).where(QNhanVien.nhanVien.trangThai.ne(core().TT_DA_XOA)).where(QNhanVien.nhanVien.vaiTros.contains(vaiTro)).fetch();
+		List<NhanVien> list = new ArrayList<NhanVien>();
+		list.add(null);
+		list.addAll(listDaiBieu);
+		return list;
+	}
 }

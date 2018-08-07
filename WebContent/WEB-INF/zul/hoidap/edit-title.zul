@@ -1,0 +1,36 @@
+<window xmlns:zk="zk" xmlns:n="native" title="${arg.save}" id="wdn"
+	border="normal" xmlns:x="xhtml" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init(arg.model)"
+	validationMessages="@id('vmsgs')" action="show: slideIn" mode="modal"
+	contentStyle="overflow:auto;" closable="true" width="800px"
+	onClose="@command('invokeGG', notify=vmArgs, detach=wdn, attr='model')">
+	<zscript>
+		vmArgs = arg.get("vmArgs");
+	</zscript>
+	<div class="row box-body">
+		<div class="row">
+			<div zclass="col-lg-12 col-md-12 col-sm-12">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Tiêu đề<n:small class="required"> *</n:small></x:label>
+					</hlayout>
+					<vlayout>
+						<textbox width="100%" class="form-control" maxlength="150"
+							value="@load(vm.name) @save(vm.name, before='saveTieuDe') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row box-footer">
+		<x:button class="btn btn-success"
+			onClick="@command('saveTieuDe', list=vmArgs, wdn=wdn)">
+			<n:i class="fa fa-save"></n:i>
+			Lưu
+		</x:button>
+		<x:button class="btn default" onClick="@command('invokeGG', notify=vmArgs, detach=wdn, attr='model')">
+			<n:i ></n:i> Hủy
+		</x:button>&#160;
+	</div>
+</window>

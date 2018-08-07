@@ -1,0 +1,3 @@
+<?component name="edit-title" inline="true" macroURI="edit-title.zul"?>
+<edit-title model="${arg.vm}"  vmArgs="${arg.vmArgs}" save="Chủ đề hiển thị ở trang hỏi đáp góp ý" />
+

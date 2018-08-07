@@ -1,0 +1,266 @@
+<window xmlns:zk="zk" xmlns:n="native" title="${arg.save}" id="wdn"
+	border="normal" xmlns:x="xhtml" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init(arg.model)"
+	validationMessages="@id('vmsgs')" action="show: slideIn" mode="modal"
+	contentStyle="overflow:auto;" closable="true" width="800px"
+	onClose="@command('invokeGG', notify=vmArgs, detach=wdn, attr='model')"
+	whatever="@load(true,after='saveHoiDap') @converter('vn.toancauxanh.service.DetachConverter')">
+	<zscript>
+		vmArgs = arg.get("vmArgs");
+	</zscript>
+	<div class="row box-body">
+		<div class="row">
+			<div zclass="col-lg-6 col-md-6 col-sm-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Họ và tên<n:small class="required"> *</n:small></x:label>
+					</hlayout>
+					<vlayout>
+						<textbox width="100%" class="form-control" maxlength="150"
+							value="@load(vm.nguoiHoi) @save(vm.nguoiHoi, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+				
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Địa chỉ email(nếu có)</x:label>
+					</hlayout>
+					<vlayout>
+						<textbox width="100%" class="form-control" maxlength="150"
+							value="@bind(vm.email)" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6 col-md-6 col-sm-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Địa chỉ</x:label>
+					</hlayout>
+					<vlayout>
+						<textbox width="100%" class="form-control" maxlength="150"
+							value="@bind(vm.diaChi)" />
+					</vlayout>
+				</div>
+				
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Số điện thoại</x:label>
+					</hlayout>
+					<vlayout>
+						<textbox width="100%" class="form-control" maxlength="150"
+							value="@bind(vm.soDienThoai)" />
+					</vlayout>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div zclass="col-lg-12 col-md-12 col-sm-12">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Tiêu đề câu hỏi/góp ý<n:small class="required"> *</n:small></x:label>
+					</hlayout>
+					<vlayout>
+						<textbox width="100%" class="form-control" maxlength="150"
+							value="@load(vm.tieuDe) @save(vm.tieuDe, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div zclass="col-lg-12 col-md-12 col-sm-12">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Nội dung câu hỏi/góp ý<n:small class="required"> *</n:small></x:label>
+					</hlayout>
+					<vlayout>
+						<textbox width="100%" rows="5" maxlength="250" value="@bind(vm.noiDung) @save(vm.noiDung, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+				<div zclass="form-group">
+					<x:label>File đính kèm</x:label>
+					<div children="@load(vm.fileCauHoi) @template('children')">
+						<template name="children">
+							<div zclass="row" style="margin-top:10px">
+								<div zclass="col-md-5">
+									<a	image=""
+										sclass="mis-upload-kc mis-inline-lock mis-word-break mis-maxwdt-75"
+										label="@load(each.tenFileDinhKem)" 
+										apply="org.zkoss.bind.BindComposer" viewModel="@id('vmobject') @init(vm)" 
+										onClick="@command('downloadFile', item=each, check = 1)">
+									</a>
+								</div>
+								<div zclass="col-md-5">
+									<textbox disabled="@load(vm.ckEditorPopup)" value="@load(each.tenHienThi) @save(each.tenHienThi, before={'saveHoiDap'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"
+										width="99%"/>
+								</div>
+								<div zclass="col-md-1">
+									<a href="#" sclass="mis-remove-image"
+										onClick="@command('deleteFileDinhKem', item=each, check = 1)">
+										<n:i class="fa fa-trash-o"></n:i>
+										Xóa
+									</a>
+								</div>
+							</div>
+						</template>
+					</div>
+					<span sclass="mis-to-upload">
+						<button id="fileUpload" disabled="@load(vm.ckEditorPopup)"
+							label="Tải lên (Tối đa 50MB)" sclass="wd-upload-btn"
+							apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vmobject') @init(vm)"
+							onUpload="@command('uploadFile',media=event.media,vmsgs=null, check = 1)"
+							upload="true,maxsize=51200,accept=.pdf|.doc|.docx|.xls|.xlsx" image="/img/attachment.png" />
+					</span>			
+				</div>
+				<label zclass="error" value="@load(vmsgs['uploadbtn'])" />
+			</div>
+		</div>
+		<div class="row">
+			<div zclass="col-lg-6 col-md-6 col-sm-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Ngày phản ánh<n:small class="required"> *</n:small></x:label>
+					</hlayout>
+					<vlayout>
+						<datebox format="dd-MM-yyyy KK:mm a" timeZone="GMT+7" width="200px" cols="20"
+							sclass="mis-datebox-inner" value="@load(vm.ngayPhanAnh) @save(vm.ngayTao, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"/>
+						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6 col-md-6 col-sm-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Lĩnh vực</x:label>
+					</hlayout>
+					<vlayout>
+						<combobox  readonly="true" disabled="@load(vm.ckEditorPopup)" class="his"
+							model="@load(entry.linhVucHoiDap.listLinhVucAnhNull)"
+							value="@load(vm.linhVuc eq null ? 'Chọn lĩnh vực' : vm.linhVuc.tenLinhVuc)"
+							selectedItem="@load(vm.linhVuc) @save(vm.linhVuc, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"
+							width="100%">
+							<template name="model">
+								<comboitem label="@load(each.tenLinhVuc eq null ? 'Chọn lĩnh vực' : each.tenLinhVuc)" />
+							</template>
+						</combobox>
+						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6 col-md-6 col-sm-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Đại biểu giám sát</x:label>
+					</hlayout>
+					<vlayout>
+						<combobox  readonly="true" disabled="@load(vm.ckEditorPopup)" class="his"
+							model="@load(entry.nhanViens.listDaiBieuAndNull)"
+							value="@load(vm.daiBieuGiamSat eq null ? 'Chọn đại biểu giám sát' : vm.daiBieuGiamSat.hoVaTen)"
+							selectedItem="@bind(vm.daiBieuGiamSat)"
+							width="100%">
+							<template name="model">
+								<comboitem label="@load(each.hoVaTen eq null ? 'Chọn đại biểu giám sát' : each.hoVaTen)" />
+							</template>
+						</combobox>
+					</vlayout>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div zclass="col-lg-12 col-md-12 col-sm-12">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Câu trả lời</x:label>
+					</hlayout>						
+					<vlayout>
+						<ckeditor toolbar="Full" id="WYSIWYG" width="100%"
+							height="200px" 
+							filebrowserImageBrowseUrl="${labels.filestore.files}"
+							filebrowserImageUploadUrl="${labels.filestore.galleryup}"
+							filebrowserBrowseUrl="${labels.filestore.files}"
+							customConfigurationsPath="/backend/assets/js/configWYSIYG.js"
+							value="@bind(vm.cauTraLoi)" >
+						</ckeditor>
+					</vlayout>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div zclass="col-lg-12 col-md-12 col-sm-12">
+				<div zclass="form-group">
+					<x:label>File đính kèm</x:label>
+					<div children="@load(vm.fileTraLoi) @template('children')">
+						<template name="children">
+							<div zclass="row" style="margin-top:10px">
+								<div zclass="col-md-5">
+									<a	image=""
+										sclass="mis-upload-kc mis-inline-lock mis-word-break mis-maxwdt-75"
+										label="@load(each.tenFileDinhKem)" 
+										apply="org.zkoss.bind.BindComposer" viewModel="@id('vmobject1') @init(vm)" 
+										onClick="@command('downloadFile', item=each, check = 2)">
+									</a>
+								</div>
+								<div zclass="col-md-5">
+									<textbox disabled="@load(vm.ckEditorPopup)" value="@bind(each.tenHienThi)"
+										width="99%"/>
+								</div>
+								<div zclass="col-md-1">
+									<a href="#" sclass="mis-remove-image"
+										onClick="@command('deleteFileDinhKem', item=each, check = 2)">
+										<n:i class="fa fa-trash-o"></n:i>
+										Xóa
+									</a>
+								</div>
+							</div>
+						</template>
+					</div>
+					<span sclass="mis-to-upload">
+						<button id="fileUpload2" disabled="@load(vm.ckEditorPopup)"
+							label="Tải lên (Tối đa 50MB)" sclass="wd-upload-btn"
+							apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vmobject1') @init(vm)"
+							onUpload="@command('uploadFile',media=event.media,vmsgs=null, check = 2)"
+							upload="true,maxsize=51200,accept=.pdf|.doc|.docx|.xls|.xlsx" image="/img/attachment.png" />
+					</span>			
+				</div>
+				<label zclass="error" value="@load(vmsgs['uploadbtn'])" />
+			</div>
+		</div>
+		<div class="row">
+			<div zclass="col-lg-6 col-md-6 col-sm-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>Ngày trả lời</x:label>
+					</hlayout>
+					<vlayout>
+						<datebox format="dd-MM-yyyy KK:mm a" timeZone="GMT+7" width="200px" cols="20"
+							sclass="mis-datebox-inner" value="@bind(vm.ngayTraLoi)"/>
+					</vlayout>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row box-footer">
+		<x:button class="btn btn-success" zk:if="${vm.showLuu}"
+			onClick="@command('saveHoiDap', list=vmArgs,attr='targetQuery', wdn=wdn)">
+			<n:i class="fa fa-save"></n:i>
+			Lưu
+		</x:button>
+		<x:button class="btn green" zk:if="${vm.showXuatBan}" 
+			onClick="@command('xuatBan', list=vmArgs, attr='targetQuery',wdn=wdn,stt=true)">
+			<n:i class="fa fa-globe"></n:i>
+			&#160;Xuất bản
+		</x:button>
+		<x:button class="btn purple" zk:if="${vm.showKhongXuatBan}"
+			onClick="@command('xuatBan', list=vmArgs, attr='targetQuery',wdn=wdn,stt=false)">
+			<n:i class="fa fa-eye-slash"></n:i>
+			&#160;Không xuất bản
+		</x:button>
+		<x:button class="btn default" onClick="@command('invokeGG', notify=vmArgs, detach=wdn, attr='model')">
+			<n:i ></n:i> Hủy
+		</x:button>&#160;
+	</div>
+</window>

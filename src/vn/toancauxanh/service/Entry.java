@@ -42,6 +42,7 @@ import vn.toancauxanh.cms.service.LanguageService;
 import vn.toancauxanh.cms.service.LinhVucVanBanService;
 import vn.toancauxanh.cms.service.LoaiVanBanService;
 import vn.toancauxanh.cms.service.ThongBaoService;
+import vn.toancauxanh.cms.service.TinBaiService;
 import vn.toancauxanh.cms.service.VanBanService;
 import vn.toancauxanh.cms.service.VideoService;
 import vn.toancauxanh.model.VaiTro;
@@ -437,6 +438,9 @@ public class Entry extends BaseObject<Object> {
 	//Hieu
 	public final DanhMucService getDanhMuc() {
 		return new DanhMucService();
+	}
+	public final TinBaiService getTinBais() {
+		return new TinBaiService();
 	}
 	public final List<String> getNoiDungActive() {
 		return Arrays.asList("chude", "baiviet", "video", "gallery", "linhvuchoidap", "hoidaptructuyen", "faqcategory",

@@ -1,0 +1,56 @@
+<?page title="Quản lý tham số" contentType="text/html;charset=UTF-8"?>
+<div xmlns:zk="zk" xmlns:n="native" xmlns:x="xhtml"
+	apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('vn.toancauxanh.cms.service.ThamSoService')"
+	validationMessages="@id('vmsgs')">
+
+	<div class="row">
+		<div class="col-lg-6">
+			<div zclass="form-group" style="margin: 10px;">
+				<hlayout class="control-label">
+					<x:label>Chủ đề cần cập nhật</x:label>
+				</hlayout>
+				<combobox model="@load(vm.list)"
+					selectedItem="@bind(vm.thamSoSelect)"
+					value="@load(vm.thamSoSelect eq null ? 'Chọn chủ đề' : vm.thamSoSelect.name)"
+					onSelect="@command('onSelectThamSo')" width="100%">
+					<template name="model">
+						<comboitem label="@load(each.name)" />
+					</template>
+				</combobox>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div zclass="form-group" style="margin: 10px;">
+				<hlayout class="control-label">
+					<x:label>Chọn chủ đề cần cập nhật</x:label>
+				</hlayout>
+				<combobox
+					viewModel="@id('vmm')@init('vn.toancauxanh.cms.service.DanhMucService')"
+					model="@load(vmm.listParent)"
+					selectedItem="@bind(vm.danhMucSelect)"
+					value="@load(vm.danhMucSelect eq null ? 'Chọn chủ đề' : vm.danhMucSelect.name)" width="100%">
+					<template name="model">
+						<comboitem label="@load(each.name)" />
+					</template>
+				</combobox>
+			</div>
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<div zclass="form-group" style="margin: 10px;">
+				<x:button
+					zk:viewModel="@id('vme')@init('vn.toancauxanh.gg.model.ThamSo')"
+					 class="btn btn-primary"
+					visible="@load(entry.quyen.thamso_sua or (vm.noId() and entry.quyen.thamso_them))"
+					onClick="@command('saveThamSo', obj = vm.danhMucSelect, objTS = vm.thamSoSelect, vm = vm)">
+					<n:i class="fa fa-save"></n:i>
+					Lưu
+				</x:button>
+			&#160;
+			</div>
+		</div>
+	</div>
+</div>

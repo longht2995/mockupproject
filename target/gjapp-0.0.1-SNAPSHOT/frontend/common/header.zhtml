@@ -1,0 +1,51 @@
+<header xmlns:zk="zk" xmlns:z="zul" >
+		<div class="banner-top">
+		</div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-nav">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Trang chủ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Giới thiệu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Tin tức</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#"  id="navbardrop1">Tương tác cử tri</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Kênh trả lời ý kiến cử tri</a>
+                  <a class="dropdown-item" href="#">Kênh kết quả giải quyết đơn thư</a>
+                  <a class="dropdown-item" href="#">Kênh đối thoại trực tuyến</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Hoạt động chỉ đạo điều hành</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Đại biểu HĐND</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="file:///C:/Users/Yuu/Desktop/chính%20phủ/index1.html" id="navbardrop">Liên hệ</a>
+                <span class="showdropdown dropdown-toggle" data-toggle="dropdown"></span>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Link 1</a>
+                  <a class="dropdown-item" href="#">Link 2</a>
+                  <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+            </form>
+          </div>
+        </div>
+      </nav>
+ </header>
+ 

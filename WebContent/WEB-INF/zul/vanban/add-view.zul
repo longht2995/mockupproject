@@ -1,0 +1,276 @@
+<?page title="${arg.save}" contentType="text/html;charset=UTF-8"?>
+<window xmlns:n="native" xmlns:x="xhtml" xmlns:zk="zk" apply="org.zkoss.bind.BindComposer"
+	id="wdn" border="normal" mode="modal" action="show: slideIn"
+	contentStyle="overflow:auto;" closable="true" title="${arg.save}"
+	onClose="@command('invokeGG', notify=vmArgs, detach=wdn, attr='targetQuery')"
+	whatever="@load(true,after='cmd') @converter('vn.toancauxanh.service.DetachConverter')"
+	viewModel="@id('vm') @init(arg.model)" validationMessages="@id('vmsgs')" width="1000px"
+	form="@id('fx') @load(vm) @save(vm, before={'saveVanBan','xuatBan'}) @validator(vm.validator)">
+	<zscript><![CDATA[
+		loaivanbans = entry.loaiVanBans;
+		linhvucvanbans = entry.linhVucVanBans;
+		coquanbanhanhs = entry.coQuanBanHanhs;
+		capbanhanhs = entry.capBanHanhs;
+		notifyObject = arg.get("notify");
+		vmArgs = arg.get("vmArgs");				
+	]]></zscript>
+	<div class="row box-body">
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Loại Văn Bản
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<combobox width="100%" model="@load(loaivanbans.listLoaiVanBan)"
+								readonly="true"
+								placeholder="Chọn loại văn bản"
+								selectedItem="@bind(vm.loaiVanBan) @save(vm.loaiVanBan, before={'saveVanBan','xuatBan'})@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')">
+							<template name="model">
+								<comboitem label="@load(each.tenLoai)"></comboitem>
+							</template>
+						</combobox>
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Cơ Quan Ban Hành
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<combobox width="100%" model="@load(coquanbanhanhs.listCoQuanBanHanh)"
+								placeholder="Chọn cơ quan ban hành" readonly="true"
+								selectedItem="@bind(vm.coQuanBanHanh) @save(vm.coQuanBanHanh, before={'saveVanBan','xuatBan'})@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')">
+							<template name="model">
+								<comboitem label="@load(each.tenCoQuan)"></comboitem>
+							</template>
+						</combobox>
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Lĩnh Vực
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<combobox width="100%" model="@load(linhvucvanbans.listLinhVucVanBan)"
+								placeholder="Chọn lĩnh vực văn bản" readonly="true"
+								selectedItem="@bind(vm.linhVucVanBan) @save(vm.linhVucVanBan, before={'saveVanBan','xuatBan'})@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')">
+							<template name="model">
+								<comboitem label="@load(each.tenLinhVuc)"></comboitem>
+							</template>
+						</combobox>
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Cấp ban hành
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<combobox width="100%" model="@load(capbanhanhs.listCapBanHanh)"
+								placeholder="Chọn cấp ban hành" readonly="true"
+								selectedItem="@bind(vm.capBanHanh) @save(vm.capBanHanh, before={'saveVanBan','xuatBan'})@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')">
+							<template name="model">
+								<comboitem label="@load(each.tenBanHanh)"></comboitem>
+							</template>
+						</combobox>
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Ngày ban hành
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<datebox format="dd-MM-yyyy" timeZone="GMT+7" width="100%" cols="21"
+								sclass="mis-datebox-inner" value="@bind(vm.ngayBanHanh) 
+								@save(vm.ngayBanHanh,before={'saveVanBan','xuatBan'}) 
+								@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"/>
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Ngày hiệu lực
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<datebox format="dd-MM-yyyy" timeZone="GMT+7" width="100%" cols="21"
+								sclass="mis-datebox-inner" value="@bind(vm.ngayHieuLuc) 
+								@save(vm.ngayHieuLuc,before={'saveVanBan','xuatBan'}) 
+								@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"
+								onChange="@command('resetMess', vmsgs=vmsgs)" />
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+						<label zclass="error" value="@load(vmsgs['dateErr'])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Số ký hiệu
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<textbox class="form-control" width="100%"
+							maxlength="255"
+							value="@bind(vm.soKyHieu) @save(vm.soKyHieu, before={'saveVanBan','xuatBan'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-6">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Người ký
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<textbox class="form-control" width="100%"
+							maxlength="255"
+							value="@bind(vm.nguoiKy) @save(vm.nguoiKy, before={'saveVanBan','xuatBan'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-12">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Trích yếu
+							<n:small class="required">*</n:small>
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<textbox class="form-control" width="100%"
+							maxlength="255"
+							value="@bind(vm.trichYeu) @save(vm.trichYeu, before={'saveVanBan','xuatBan'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<label zclass="error"
+							value="@load(vmsgs[self.previousSibling])" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-12">
+				<div zclass="form-group">
+					<hlayout class="control-label">
+						<x:label>
+							Mô tả
+						</x:label>
+					</hlayout>
+					<vlayout>
+						<textbox rows="5" class="form-control" width="100%"
+							maxlength="255"
+							value="@load(vm.moTa) @save(vm.moTa, before={'saveVanBan','xuatBan'})" />
+					</vlayout>
+				</div>
+			</div>
+			<div zclass="col-lg-12">
+				<div zclass="form-group">
+					<x:label>File đính kèm</x:label>
+					<div
+						children="@load(vm.file) @template('children')">
+						<template name="children">
+							<div zclass="row" style="margin-top:10px" >
+								<div zclass="col-md-5">
+									<a image=""
+										sclass="mis-upload-kc mis-inline-lock mis-word-break mis-maxwdt-75"
+										label="@load(each.tenFileDinhKem)"
+										apply="org.zkoss.bind.BindComposer"
+										viewModel="@id('vmobject') @init(vm)"
+										onClick="@command('downloadFile', item=each)">
+									</a>
+								</div>
+								<div zclass="col-md-5">
+									<textbox
+										disabled="@load(vm.ckEditorPopup)" visible="@load(vm.file.tenHienThi ne '')"
+										value="@load(each.tenHienThi) @save(each.tenHienThi, before={'saveVanBan','xuatBan'})"
+										width="99%"/>
+								</div>
+								<div zclass="col-md-1">
+									<a href="#" sclass="mis-remove-image" visible="@load(vm.file.tepDinhKem ne '')"
+										onClick="@command('deleteFileDinhKem', item=each)">
+										<n:i class="fa fa-trash-o"></n:i>
+										Xóa
+									</a>
+								</div>
+							</div>
+						</template>
+					</div>
+					<span sclass="mis-to-upload">
+						<button id="fileUpload"
+							disabled="@load(vm.ckEditorPopup)" label="Tải lên (Tối đa 50MB)"
+							sclass="wd-upload-btn" apply="org.zkoss.bind.BindComposer"
+							viewModel="@id('vmobject') @init(vm)"
+							onUpload="@command('uploadFile',media=event.media,vmsgs=vmsgs)"
+							upload="true,maxsize=51200,accept=.pdf|.doc|.docx|.xls|.xlsx"
+							image="/img/attachment.png" />
+					</span>
+					<label zclass="error" value="@load(vmsgs['uploadbtn'])" />
+				</div>
+			</div>
+		
+		</div>
+	<div class="row box-footer">  		
+		<x:button class="btn btn-success" 
+		 	zk:if="${(vm.noId() and entry.quyen.vanban_them) or (!vm.noId() and entry.quyen.vanban_sua)}"
+		 	onClick="@command('saveVanBan', list=notifyObject, attr='targetQuery',wdn=wdn)">
+			<n:i class="fa fa-save"></n:i>&#160;&#160;Lưu
+		</x:button>
+		<x:button class="btn green"
+			zk:if="${(!(vm.xuatBan eq true) and entry.quyen.vanban_xuatban)}"
+			onClick="@command('xuatBan', list=notifyObject, attr='targetQuery',wdn=wdn,stt=true)">
+			<n:i class="fa fa-globe"></n:i>
+			&#160;Xuất bản
+		</x:button>
+		<x:button class="btn purple"
+			zk:if="${(!(vm.xuatBan eq false) and entry.quyen.vanban_xuatban) or (vm.noId()and entry.quyen.vanban_xuatban)}"
+			onClick="@command('xuatBan', list=notifyObject, attr='targetQuery',wdn=wdn,stt=false)">
+			<n:i class="fa fa-eye-slash"></n:i>
+			&#160;Không xuất bản
+		</x:button>
+		<x:button class="btn btn-default" 
+			onClick="@command('invokeGG', notify=notifyObject, detach=wdn, attr='targetQuery')">
+			Hủy
+		</x:button>
+	</div>
+</window>

@@ -1,0 +1,102 @@
+<section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer"
+viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
+	<zscript><![CDATA[
+		String sokyhieu = execution.getParameter("sokyhieu");
+		String trichyeu = execution.getParameter("trichyeu");
+		linhvucs = entry.linhVucVanBans;
+		coquanbanhanhs = entry.coQuanBanHanhs;
+		linhvucvanbans = entry.linhVucVanBans;
+	]]></zscript>
+      <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<div class="right-content">
+				<div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span>
+                  <a href="#" class="title-mg">VĂN BẢN</a>
+                </div>
+				 <div class="content-page">
+					<ul>
+						<li class="active"><i class="fas fa-caret-right">&#160;</i>
+						&#160;Văn bản mới</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Tất cả văn bản</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Cơ quan ban hành</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Lĩnh vực</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Loại văn bản</li>
+					</ul>
+				 </div>
+			</div>
+          <img src="images/Banner1_1520218037287.png" width="100%">
+          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">VĂN BẢN</a></h4>
+			</div>
+			<div class="page-content">
+					<div class="row">
+						<div class="form-group col-md-6 mb-4">
+							<z:combobox id="cbx1" readonly="true" name="coquan" placeholder="Chọn cơ quan ban hành" 
+							model="@load(coquanbanhanhs.listCoQuanBanHanhAndNull)" 
+							value="${vm.selectCoQuan.tenCoQuan}">
+								<template name="model">
+									<z:comboitem label="${each.tenCoQuan eq null ? 'Chọn cơ quan ban hành' : each.tenCoQuan}" value="${each.id}"></z:comboitem>
+								</template>
+							</z:combobox>
+						</div>
+						<div class="form-group col-md-6 mb-4">
+							<z:combobox id="cbx2" readonly="true" name="coquan" placeholder="Chọn lĩnh vực" 
+							model="@load(linhvucvanbans.listLinhVucVanBanAndNull)" 
+							value="${vm.selectLinhVuc.tenLinhVuc}">
+								<template name="model">
+									<z:comboitem label="${each.tenLinhVuc eq null ? 'Chọn lĩnh vực' : each.tenLinhVuc}" value="${each.id}"></z:comboitem>
+								</template>
+							</z:combobox>
+						</div>
+						<div class="form-group col-md-6 mb-4">
+							<z:textbox id="txtSoKyHieu" class="form-control input-edit" value="${sokyhieu}"
+								placeholder="Số ký hiệu" width="100%"/>
+						</div>
+						<div class="form-group col-md-6 mb-4">
+							<z:textbox id="txtTrichYeu" class="form-control input-edit" value="${trichyeu}"
+								placeholder="Trích yếu" width="100%"/>
+						</div>
+						<div class="form-group col-md-6 mb-4">
+							<button type="submit" class="btn btn-primary" 
+								onClick="@command('searchVanBan', skh = txtSoKyHieu.getValue(), 
+								ty = txtTrichYeu.getValue(), cqbh = cbx1.getSelectedItem().getValue(), lvvb = cbx2.getSelectedItem().getValue())">Tìm kiếm
+							</button>
+						</div>
+					</div>
+				<span class="italic-txt">Có ${vm.sizeTotal} văn bản được tìm thấy</span>
+				<table class="table table-bordered">
+					<thead class="thead-edit">
+					  <tr>
+						<th width="20%">Số ký hiệu</th>
+						<th width="20%">Ngày ban hành</th>
+						<th>Trích yếu</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr zk:forEach="${vm.targetQueryAll.fetch()}">
+						<td>${each.soKyHieu}</td>
+						<td>1/1/1990</td>
+						<td style="text-align:left;">
+							<a href="${ctxPath}/${resource}/id/${each.id}">${each.trichYeu}</a>
+						</td>
+					  </tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li zk:forEach="${vm.record}" class="page-item ${vm.page eq each ? 'active' : ''}" >
+				    	</zscript>
+				    	<a class="page-link"
+				    		href="${ctxPath}/${resource}/vanbanmoi/${each}?sokyhieu=${sokyhieu}&trichyeu=${trichyeu}">${each}</a>
+				    </li>
+				  </ul>
+				</nav>
+			</div>
+         </div>
+      </div>
+</section>

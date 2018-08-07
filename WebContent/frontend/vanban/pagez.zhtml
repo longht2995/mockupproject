@@ -1,0 +1,103 @@
+<section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer">
+	<style>
+		table tr th{
+			color:black;
+		}
+		table tr{
+			font-size:13px;
+		}
+		table tr td{
+			text-align:left;
+		}
+		h5{
+			font-size:15px;
+		}
+		h4{
+			font-size:17px;
+			font-weight:700;
+		}
+	</style>
+	<zscript><![CDATA[
+	                  vanbans = entry.vanBans;
+	                  vanban = vanbans.getTargetQueryById().fetchFirst();
+	                  list =  vanbans.getTargetQueryRelated(vanban == null ? 0 : vanban.loaiVanBan.id).fetch();
+	                  Clients.evalJavaScript("setTitle('"+vanban.trichYeu+"')");
+	                  banners = entry.banners;
+	]]></zscript>
+	<script>
+		function setTitle(title) {
+				document.title = title;
+			}
+	</script>
+      <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<div class="right-content">
+				<div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">VĂN BẢN MỚI</a>
+                </div>
+				 <div class="content-page">
+					<ul>
+						<li class="active"><i class="fas fa-caret-right">&#160;</i>&#160;Văn bản mới</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Tất cả văn bản</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Cơ quan ban hành</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Lĩnh vực</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Loại văn bản</li>
+					</ul>
+				 </div>
+			</div>
+          <n:img zk:if="banners.targetQueryBannerGiaoTiep.fetch > 0" zk:forEach="banners.targetQueryBannerGiaoTiep.fetch"
+          	 src="/files${each.bannerUrl}" width="100%"></n:img>
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">VĂN BẢN</a></h4>
+			</div>
+			<div class="page-content">
+				<div class="alert alert-danger" zk:if="${!vanban.checkId()}">
+				  <strong>Văn bản</strong> này không tồn tại hoặc đã xóa
+				</div>
+				<div>
+					<h5>Quyết định số ${vanban.soKyHieu} của ${vanban.coQuanBanHanh.tenCoQuan} : ${vanban.trichYeu}</h5>
+					<table zk:if="${vanban.checkId()}" class="table table-bordered table-sm" >
+					<tr>
+						<td>Số ký hiệu</th>
+						<td>${vanban.soKyHieu}</th>
+					  </tr>
+					  <tr>
+						<td>Cơ quan ban hành</th>
+						<td>${vanban.coQuanBanHanh.tenCoQuan}</th>
+					  </tr>
+					  <tr>
+						<td>Loại văn bản</th>
+						<td>${vanban.loaiVanBan.tenLoai}</th>
+					  </tr>
+					  <tr>
+						<td>Ngày ban hành</th>
+						<td>${vanban.ngayBanHanh}</th>
+					  </tr>
+					  <tr>
+					  	<td>Ngày có hiệu lực</th>
+						<td>${vanban.ngayHieuLuc}</td>
+					  </tr>
+					  <tr>
+						<td>Người ký</th>
+						<td>${vanban.nguoiKy}</th>
+					  </tr>
+					  <tr>
+						<td class="align-baseline">Xem văn bản</th>
+						<td class="align-baseline"><a href="/files${vanban.file.fileUrl}"><i class="fas fa-eye"></i></a></th>
+					  </tr>
+				</table>
+				</div>
+				
+				<div zk:if="${list.size()>0}">
+					<h4>VĂN BẢN KHÁC</h4>
+					<ul>
+						<li zk:forEach="${list}"><a href="${ctxPath}/${resource}/id/${each.id}">${each.trichYeu}</a></li>
+					</ul>
+				</div>
+			</div>
+         </div>
+      </div>
+</section>

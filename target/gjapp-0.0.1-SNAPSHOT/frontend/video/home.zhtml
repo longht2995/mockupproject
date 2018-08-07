@@ -1,0 +1,75 @@
+<section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer">
+	<zscript><![CDATA[
+	        String id = execution.getParameter("id");
+	        videos = entry.videos;
+			video = videos.getTargetQueryNoiBatOrById().fetchFirst();
+			list = videos.getTargetQueryVideo(video == null ? 0 : video.id).fetch();
+	]]></zscript>
+      <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<div class="right-content">
+				<div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">VIDEO</a>
+                </div>
+				 <div class="content-page">
+					<ul>
+						<a zk:forEach="${entry.chuDeVideos.listChuDeVideo}" href="${ctxPath}/${resource}/${each.id}"><li><i class="fas fa-caret-right">&#160;</i>&#160;${each.tenChuDe}</li></a>
+					</ul>
+				 </div>
+			</div>
+          <img src="images/Banner1_1520218037287.png" width="100%">
+          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">VIDEO</a></h4>
+			</div>
+			<div class="page-content">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-danger" zk:if="${!video.checkId()}">
+						  <strong>Video</strong> này không tồn tại hoặc đã xóa
+						</div>
+						<div class="alert alert-danger" zk:if="${!video.checkId()}">
+						  <strong>Hoặc</strong> có thể bạn đang truy cập đường dẫn không tồn tại
+						</div>
+						<div zk:if="${video.checkId()}">
+							<h5>${video.tieuDe}</h5>
+							<p class="date-item">${video.ngayXuatBan}</p>
+							<iframe zk:if="${video.txtLoai eq '1'}" width="100%" height="350px" src="${video.file.fileUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+							</iframe>
+							<z:div if="${id != null}">
+								<zscript>
+									<![CDATA[
+										Clients.evalJavaScript("setTitle('"+video.tieuDe+"')");
+										Clients.evalJavaScript("setUrl('"+ctxPath+'/'+resource+'/'+video.chuDeVideo.id+'/'+video.alias+'/'+video.id+"')");
+										]]>
+								</zscript>
+							</z:div>
+							<div class="item-lienquan" zk:if="${list.size() > 0}">
+								<h4>VIDEO KHÁC</h4>
+								<div class="row">
+									<div class="col-md-3" zk:forEach="${list}">
+										<img src="images/ahihi.jpg" width="100%"></img>
+										<a href="${ctxPath}/${resource}/${each.chuDeVideo.id}/${video.alias}/${each.id}"><span>${each.tieuDe}</span></a>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+         </div>
+      </div>
+      <script>
+		function setTitle(title,url) {
+			document.title = title;
+		}
+		function setUrl(url) {
+			history.replaceState(null, null, url);
+		}
+	</script>
+</section>

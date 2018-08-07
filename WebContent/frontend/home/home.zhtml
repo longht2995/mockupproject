@@ -1,0 +1,232 @@
+<section xmlns:zk="zk" xmlns:z="zul" xmlns:n="native">
+	<zscript><![CDATA[
+		homes = entry.homes;
+	]]></zscript>
+	<p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+	<div class="row">
+        <div class="col-md-9 fixpadding-right">
+        <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftTop.bannerUrl != null}" 
+            	src="/files${homes.targetQueryBannerLeftTop.bannerUrl}" 
+            	style="margin-bottom:15px;" width="100%"></n:img>
+          <div class="tintuc-noibat">
+              <!--Start Slide Image-->
+             
+              <!--End Slide Image-->
+            </div>
+            <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftMidle.bannerUrl != null}" 
+            	src="/files${homes.targetQueryBannerLeftMidle.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
+            <div class="row" style="margin-top:15px;">
+              <div class="col-md-6 fixpadding-right">
+                <div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                </div>
+				
+                <div class="tintuc-content">
+                  <div class="item-tintuc">
+                      <div class="item-img">
+                        <img src="images/s_hdndhuyen2_1499843774462.jpg" width="120px" height="80px">
+                      </div>
+                      <div class="item-content text-noibat">
+                        <a href="#">Khai mạc kỳ họp thứ Tư, HĐND huyện khóa X, nhiệm kỳ 2016-2021</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đoàn đại biểu Quốc hội đơn vị thành phố Đà Nẵng tiếp xúc cử tri huyện Hòa Vang</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Quy định giá đất ở đối với các đường chưa đặt tên tại các Khu dân cư trên địa bàn huyện Hòa Vang</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 fixpadding-left padding-rep">
+                <div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                </div>
+                <div class="tintuc-content">
+                  <div class="item-tintuc">
+                      <div class="item-img">
+                        <img src="images/anh1.jpg" width="120px" height="80px">
+                      </div>
+                      <div class="item-content text-noibat">
+                        <a href="#">Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Hòa Nhơn: đa dạng hóa các hình thức tuyên truyền về thực hiện chương trình “Thành phố 4 an”</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftBottom.bannerUrl != null}" 
+            	src="/files${homes.targetQueryBannerLeftBottom.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
+            <!--Bai viet duoi-->
+            <div class="row" style="margin-top:15px;">
+              <div class="col-md-6 fixpadding-right">
+                <div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                </div>
+                <div class="tintuc-content">
+                  <div class="item-tintuc">
+                      <div class="item-img">
+                        <img src="images/s_hdndhuyen2_1499843774462.jpg" width="120px" height="80px">
+                      </div>
+                      <div class="item-content text-noibat">
+                        <a href="#">Khai mạc kỳ họp thứ Tư, HĐND huyện khóa X, nhiệm kỳ 2016-2021</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đoàn đại biểu Quốc hội đơn vị thành phố Đà Nẵng tiếp xúc cử tri huyện Hòa Vang</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Quy định giá đất ở đối với các đường chưa đặt tên tại các Khu dân cư trên địa bàn huyện Hòa Vang</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 fixpadding-left padding-rep">
+                <div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">THƯỜNG TRỰC HĐND HUYỆN</a>
+                </div>
+                <div class="tintuc-content">
+                  <div class="item-tintuc">
+                      <div class="item-img">
+                        <img src="images/anh1.jpg" width="120px" height="80px">
+                      </div>
+                      <div class="item-content text-noibat">
+                        <a href="#">Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân Hòa Phước: Trao “thùng rác văn minh” cho các hộ dân</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Hòa Nhơn: đa dạng hóa các hình thức tuyên truyền về thực hiện chương trình “Thành phố 4 an”</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                  <div class="item-tintuc">
+                      <div class="item-content">
+                        <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!--Right Layout-->
+        <div class="col-md-3 fixpadding-left">
+          <n:img class="banner-left" zk:if="${homes.targetQueryBannerRightTop.bannerUrl != null}" 
+            	src="/files${homes.targetQueryBannerRightTop.bannerUrl}" width="100%"></n:img>
+          <div class="right-content">
+            <div class="title-right">
+              <a href="#">THÔNG BÁO MỚI</a>
+            </div>
+            <marquee onmouseover="this.stop();" onmouseout="this.start();" behavior="alternate" scrollamount="2" direction="up" class="content-rlayout">
+              <div class="item-marque">
+                <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
+              </div>
+              <div class="item-marque">
+                <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
+              </div>
+              <div class="item-marque">
+                <a href="#">Đoàn đại biểu Quốc hội đơn vị thành phố Đà Nẵng tiếp xúc cử tri huyện Hòa Vang</a>
+              </div>
+              <div class="item-marque">
+                <a href="#">Quy định giá đất ở đối với các đường chưa đặt tên tại các Khu dân cư trên địa bàn huyện Hòa Vang</a>
+              </div>
+              <div class="item-marque">
+                <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
+              </div>
+            </marquee>
+          </div>
+          <n:img class="banner-left" zk:if="${homes.targetQueryBannerRightMidle.bannerUrl != null}" 
+            	src="/files${homes.targetQueryBannerRightMidle.bannerUrl}" width="100%"></n:img>
+          <div class="right-content">
+            <div class="title-right">
+              <a href="${ctxPath}/vanban">VĂN BẢN MỚI</a>
+            </div>
+            <marquee onmouseover="this.stop();" onmouseout="this.start();" 
+            	behavior="alternate" scrollamount="2" direction="up" class="content-rlayout">
+				<div class="item-marque" zk:forEach="${homes.targetQueryVanBan.fetch()}" 
+					viewModel="@id('vb') @init(each)">
+		           <a href="${ctxPath}/vanban/id/${vb.id}">${vb.trichYeu}</a>
+		        </div>
+            </marquee>
+          </div>
+          <n:img class="banner-left" zk:if="${homes.targetQueryBannerRightBottom.bannerUrl != null}" 
+            	src="/files${homes.targetQueryBannerRightBottom.bannerUrl}" width="100%"></n:img>
+          <div class="right-content">
+            <div class="title-right">
+              <a href="${ctxPath}/video">VIDEO</a>
+            </div>
+            <div class="content-rlayout content-video" style="height:auto;">
+              <div class="item-video" zk:forEach="${homes.targetQueryVideo.fetch()}" 
+              	viewModel="@id('vd') @init(each)">
+               	<div class="${forEachStatus.first ? 'item-video-nb' : 'item-video-mg'}">
+               		<iframe zk:if="${forEachStatus.first && vd.txtLoai eq '1'}" width="100%" 
+               			src="${vd.file.fileUrl}" frameborder="0" allow="autoplay; encrypted-media" 
+               			allowfullscreen></iframe>
+               		<video zk:if="${forEachStatus.first && vd.txtLoai eq '0'}" width="100%" controls>
+								<n:source src="../files${vd.file.fileUrl}" type="video/mp4"></n:source>
+							</video>
+               		<a zk:if="${!forEachStatus.first}" 
+               			href="${ctxPath}/video/${each.chuDeVideo.id}/id/${each.id}" >${vd.tieuDe}</a>
+               	</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Right Layout-->
+      </div>
+</section>

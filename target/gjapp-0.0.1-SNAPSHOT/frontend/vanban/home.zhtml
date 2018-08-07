@@ -1,0 +1,46 @@
+<section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer"
+viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
+	<zscript><![CDATA[
+	                  linhvucs = entry.linhVucVanBans.getTargetQueryLinhVuc();
+	                  vanbans = entry.vanBans;
+	]]></zscript>
+      <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<div class="right-content">
+				<div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span>
+                  <a href="#" class="title-mg">VĂN BẢN</a>
+                </div>
+				 <div class="content-page">
+					<ul>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Văn bản mới</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Tất cả văn bản</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Cơ quan ban hành</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Lĩnh vực</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Loại văn bản</li>
+					</ul>
+				 </div>
+			</div>
+          <img src="images/Banner1_1520218037287.png" width="100%">
+          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">VĂN BẢN</a></h4>
+			</div>
+			<div class="page-content">
+				<div class="row">
+					<div class="box-item">
+						<div class="item-report" zk:forEach="${linhvucs.fetch()}">
+							<span class="title-baocao">${each.tenLinhVuc}</span>
+							<span class="count-baocao">${vanbans.getCount(each.id)}</span>
+							<span class="title-baocao">Văn bản</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+         </div>
+      </div>
+</section>

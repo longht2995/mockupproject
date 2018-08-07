@@ -1,0 +1,60 @@
+<?page title="${arg.save}" contentType="text/html;charset=UTF-8"?>
+<window xmlns:n="native" xmlns:x="xhtml" xmlns:zk="zk" apply="org.zkoss.bind.BindComposer"
+	id="wdn" border="normal" mode="modal" action="show: slideIn"
+	contentStyle="overflow:auto;" closable="true" title="${arg.save}"
+	onClose="@command('invokeGG', notify=vmArgs, detach=wdn, attr='targetQuery')"
+	whatever="@load(true,after='cmd') @converter('vn.toancauxanh.service.DetachConverter')"
+	viewModel="@id('vm') @init(arg.model)" validationMessages="@id('vmsgs')" width="500px">
+	<zscript><![CDATA[
+		notifyObject = arg.get("notify");
+		vmArgs = arg.get("vmArgs");				
+	]]></zscript>
+	<div class="row box-body">
+		<div zclass="col-lg-12">
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>
+						Tên chủ đề
+						<n:small class="required">*</n:small>
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<textbox class="form-control" width="100%"
+						maxlength="255"
+						value="@load(vm.tenChuDe) @save(vm.tenChuDe, before={'saveChuDe'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+					<label zclass="error"
+						value="@load(vmsgs[self.previousSibling])" />
+				</vlayout>
+			</div>
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>
+						Mô tả
+						<n:small class="required">*</n:small>
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<textbox class="form-control" width="100%"
+						maxlength="255"
+						value="@load(vm.mota) @save(vm.mota, before={'saveChuDe'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+					<label zclass="error"
+						value="@load(vmsgs[self.previousSibling])" />
+				</vlayout>
+				<div class="form-group">
+						<checkbox label="Áp dụng" checked="@bind(vm.checkApDung)" />
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="row box-footer">  		
+		<x:button class="btn btn-success" 
+		 	zk:if="${(vm.noId() and entry.quyen.chudevideo_them) or (!vm.noId() and entry.quyen.chudevideo_sua)}"
+		 	onClick="@command('saveChuDe', list=notifyObject, attr='targetQuery',wdn=wdn)">
+			<n:i class="fa fa-save"></n:i>&#160;&#160;Lưu
+		</x:button>
+		<x:button class="btn btn-default" 
+			onClick="@command('invokeGG', notify=notifyObject, detach=wdn, attr='targetQuery')">
+			Hủy
+		</x:button>
+	</div>
+</window>

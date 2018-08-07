@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client">
+	<head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	  <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+	  <meta name="twitter:card" content="" />
+	  <meta name="twitter:site" content="" />
+	  <meta name="twitter:creator" content="" />
+	  <meta property="og:description" content="" />
+	  <meta property="og:image" content="" />
+	  <meta property="og:site_name" content="">
+	  <meta property="og:title" content="" />
+	  <meta property="og:type" content="">
+	  <meta property="og:url" content="" />
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	  <link rel="stylesheet" href="${execution.contextPath}/assetsfe/style/style.css"></link>
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	  <title>HĐND Thừa Thiên Huế</title>
+	</head>
+	<body>
+	<zscript><![CDATA[               
+		String resource = execution.getParameter("resource");
+		entry = new vn.toancauxanh.service.BaseObject().core();
+		String ctxPath = execution.getContextPath();
+	]]></zscript>
+	  <div class="container-fluid fixpd-wrapper">
+		<z:include src="/frontend/common/header.zhtml"></z:include>
+		<div class="container">
+  		<z:include src="${execution.getParameter('file')}" instant="true"></z:include>
+		<z:include src="/frontend/common/footer.zhtml"></z:include>
+		</div>
+	  </div>
+	</body>
+</html>

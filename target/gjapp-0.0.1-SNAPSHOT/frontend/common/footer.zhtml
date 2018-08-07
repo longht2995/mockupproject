@@ -1,0 +1,67 @@
+<footer>
+	<img src="/assetsfe/images/bannerfooter.png" width="100%"
+		style="padding-top:20px;">
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-footer-nav">
+			<div class="container">
+				<div class="collapse navbar-collapse"
+					id="navbarTogglerDemo01">
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								Trang chủ
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Giới thiệu</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Tin tức</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								Tương tác cử tri
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								Hoạt động chỉ đạo điều hành
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								Đại biểu HĐND
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Liên hệ</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="ft-content">
+			<h4 class="ft-title">
+				HỘI ĐỒNG NHÂN DÂN HUYỆN HOÀ VANG - TP. ĐÀ NẴNG
+			</h4>
+			<p>
+				Địa chỉ: QL 14B, Trung tâm hành chính huyện Hòa Vang,
+				Tp. Đà Nẵng
+			</p>
+			<p>
+				Điện thoại: +(84) 2363 662 575 - Email:
+				hdndhoavang@danang.gov.vn
+			</p>
+			<p>Website: www.dbnd.hoavang.danang.gov.vn</p>
+			<p>
+				Chỉ đạo thực hiện: Đồng chí Trần Văn Trường - Thành ủy
+				viên, Bí thư huyện ủy, Chủ tịch HĐND huyện Hòa Vang
+			</p>
+			<p>
+				Bản quyền của Hội đồng nhân dân huyện Hoà Vang Tp. Đà
+				Nẵng
+			</p>
+			<p>Phát triển bởi Toàn Cầu Xanh</p>
+		</div>
+</footer>

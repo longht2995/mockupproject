@@ -1,0 +1,205 @@
+<?page title="${arg.save}" contentType="text/html;charset=UTF-8"?>
+<window xmlns:n="native" xmlns:x="xhtml" xmlns:zk="zk" apply="org.zkoss.bind.BindComposer"
+	id="wdn" border="normal" mode="modal" action="show: slideIn"
+	contentStyle="overflow:auto;" closable="true" title="${arg.save}"
+	onClose="@command('invokeGG', notify=vmArgs, detach=wdn, attr='targetQuery')"
+	whatever="@load(true,after='cmd') @converter('vn.toancauxanh.service.DetachConverter')"
+	viewModel="@id('vm') @init(arg.model)" validationMessages="@id('vmsgs')" width="1000px"
+	form="@id('fx') @load(vm) @save(vm, before={'saveVideo','xuatBan'}) @validator(vm.validator)">
+	<zscript><![CDATA[
+		notifyObject = arg.get("notify");
+		vmArgs = arg.get("vmArgs");
+		chudevideos = entry.chuDeVideos;
+		import java.awt.*;
+		import java.awt.image.*;
+		import java.awt.geom.*;
+		BufferedImage imagevar2 = new BufferedImage(460, 294, BufferedImage.TYPE_INT_ARGB); 
+	]]></zscript>
+	<div class="row box-body">
+		<div zclass="col-lg-8">
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>
+						Chủ đề video
+						<n:small class="required">*</n:small>
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<combobox model="@load(chudevideos.listChuDeVideoAndNull)"
+						selectedItem="@bind(vm.chuDeVideo) @save(vm.chuDeVideo, before={'saveVideo'} )@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"
+						placeholder="Chọn chủ đề">
+						<template name="model">
+							<comboitem label="@load(each.tenChuDe eq null ? 'Chọn chủ đề' : each.tenChuDe)"/>
+						</template>
+					</combobox>
+					<label zclass="error"
+						value="@load(vmsgs[self.previousSibling])" />
+				</vlayout>
+			</div>
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>
+						Tiêu đề
+						<n:small class="required">*</n:small>
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<textbox class="form-control" width="100%"
+						maxlength="255"
+						value="@bind(vm.tieuDe) @save(vm.tieuDe, before={'saveVideo'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+					<label zclass="error"
+						value="@load(vmsgs[self.previousSibling])" />
+				</vlayout>
+			</div>
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>
+						Mô tả
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<textbox class="form-control" width="100%" rows="5"
+						maxlength="255"
+						value="@load(vm.moTa) @save(vm.moTa, before={'saveVideo'}) " />
+				</vlayout>
+			</div>
+			
+			<div zclass="form-group">
+				<hlayout class="control-label">
+					<x:label>
+						Chọn loại video
+						<n:small class="required">*</n:small>
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<combobox selectedIndex="@bind(vm.txtLoai)">
+						<comboitem label="Tệp đính kèm"></comboitem>
+						<comboitem label="Liên kết"></comboitem>
+					</combobox>
+					<label zclass="error"
+						value="@load(vmsgs[self.previousSibling])" />
+				</vlayout>
+			</div>
+			<div zclass="form-group" visible="@load(vm.txtLoai eq '0')">
+				<hlayout class="control-label">
+					<x:label>
+						File đính kèm
+						<n:small class="required">*</n:small>
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<div
+					children="@load(vm.file) @template('children')">
+					<template name="children">
+						<div zclass="row" style="margin-top:10px" >
+							<div zclass="col-md-5">
+								<a image=""
+									sclass="mis-upload-kc mis-inline-lock mis-word-break mis-maxwdt-75"
+									label="@load(each.tenFileDinhKem)"
+									apply="org.zkoss.bind.BindComposer"
+									viewModel="@id('vmobject') @init(vm)"
+									onClick="@command('downloadFile', item=each)"
+									>
+								</a>
+							</div>
+							<div zclass="col-md-5">
+								<textbox visible="@load(vm.file.tenHienThi ne '')"
+									value="@load(each.tenHienThi) @save(each.tenHienThi, before={'saveVideo','xuatBan'})"
+									width="99%"/>
+							</div>
+							<div zclass="col-md-1">
+								<a href="#" sclass="mis-remove-image" visible="@load(vm.file.tepDinhKem ne '')"
+									onClick="@command('deleteFileDinhKem', item=each)">
+									<n:i class="fa fa-trash-o"></n:i>
+									Xóa
+								</a>
+							</div>
+						</div>
+					</template>
+				</div>
+					<span sclass="mis-to-upload">
+					<button id="fileUpload"
+						label="@load(vm.file.tepDinhKem eq '' ? 'Tải lên(Tối đa 50MB)' : 'Tải lại(Tối đa 50MB)')"
+						sclass="wd-upload-btn" apply="org.zkoss.bind.BindComposer"
+						viewModel="@id('vmobject') @init(vm)"
+						onUpload="@command('uploadFile',media=event.media,vmsgs=vmsgs)"
+						upload="true,maxsize=51200,accept=.mp4|.avi|.ogm|.mpg|.wmv"
+						image="/img/attachment.png" />
+				</span>
+				<label zclass="error" value="@load(vmsgs['uploadbtn'])" />
+				</vlayout>
+			</div>
+			<div zclass="form-group" visible="@load(vm.txtLoai eq '1')">
+				<hlayout class="control-label">
+					<x:label>
+						Video liên kết
+						<n:small class="required">*</n:small>
+					</x:label>
+				</hlayout>
+				<vlayout>
+					<textbox width="100%" value="@bind(vm.file.fileUrl) @save(vm.file.fileUrl,before='saveVideo')"></textbox>
+					<label zclass="error"
+						value="@load(vmsgs['lienket'])" />
+				</vlayout>
+			</div>
+		</div>
+		<div zclass="col-lg-4">
+			<div zclass="form-group">
+				<x:label>Hình đại diện</x:label>
+					<div zclass="img-crop">
+						<image id="imageCmp" width="100%" height="" sclass="mis-image-upload" 
+							content="@bind(vm.image.imageContent eq null ? imagevar2 : vm.image.imageContent)">
+						</image>
+						<label zclass="error"
+ 								value="@load(vmsgs['error'])" />
+					</div>
+					<hlayout>
+						<button label="Chọn hình" sclass="wd-upload-btn" upload="true,maxsize=10000,accept=.png|.jpg"
+							onUpload="@command('attachImages',media=event.media)" image="/img/attachment.png" />
+					</hlayout>
+					<n:small>Hỗ trợ định dạng *.png, *.jpg, tối đa 10MB</n:small>
+			</div>
+			<div zclass="form-group">
+				<x:label>Ngày xuất bản</x:label>
+				<hlayout class="control-label">
+					<datebox format="dd-MM-yyyy" timeZone="GMT+7"
+						cols="21" sclass="mis-datebox-inner" value="@bind(vm.ngayXuatBan)" />
+					<label zclass="error"
+						value="@load(vmsgs[self.previousSibling])" />
+				</hlayout>
+			</div>
+			<div zclass="form-group">
+				<x:label>Ngày hết hạn</x:label>
+				<hlayout class="control-label">
+					<datebox format="dd-MM-yyyy" timeZone="GMT+7"
+						width="100%" cols="21" sclass="mis-datebox-inner"
+						value="@bind(vm.ngayHetHan)" />
+					
+				</hlayout>
+			</div>
+			<label zclass="error"
+						value="@load(vmsgs['dateErr'])" />
+		</div>
+	</div>
+	<div class="row box-footer">  		
+		<x:button class="btn btn-success" 
+		 	zk:if="${(vm.noId() and entry.quyen.video_them) or (!vm.noId() and entry.quyen.video_sua)}"
+		 	onClick="@command('saveVideo', list=notifyObject, attr='targetQuery',wdn=wdn)">
+			<n:i class="fa fa-save"></n:i>&#160;&#160;Lưu
+		</x:button>
+		<x:button class="btn green" 
+		 	zk:if="${(!(vm.xuatBan eq true) and entry.quyen.video_xuatban)}"
+		 	onClick="@command('xuatBan', list=notifyObject, attr='targetQuery',wdn=wdn, stt = true)">
+			<n:i class="fa fa-globe"></n:i>&#160;&#160;Xuất bản
+		</x:button>
+		<x:button class="btn purple" 
+		 	zk:if="${(!(vm.xuatBan eq false) and entry.quyen.video_xuatban) or (vm.noId() and entry.quyen.video_xuatban)}"
+		 	onClick="@command('xuatBan', list=notifyObject, attr='targetQuery',wdn=wdn, stt = false)">
+			<n:i class="fa fa-eye-slash"></n:i>&#160;&#160;Không xuất bản
+		</x:button>
+		<x:button class="btn btn-default" 
+			onClick="@command('invokeGG', notify=notifyObject, detach=wdn, attr='targetQuery')">
+			Hủy
+		</x:button>
+	</div>
+</window>

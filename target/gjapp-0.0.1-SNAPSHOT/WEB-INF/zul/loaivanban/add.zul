@@ -1,0 +1,2 @@
+<?component name="add-view" inline="true" macroURI="add-view.zul"?>
+<add-view model="${entry.loaiVanBans.type().newInstance()}"  notify="${arg.vmArgs}" save="Tạo mới loại văn bản" />

@@ -1,0 +1,115 @@
+<?page title="Quản lý video" contentType="text/html;charset=UTF-8"?>
+<div xmlns:zk="zk" xmlns:n="native" xmlns:x="xhtml" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VideoService')">
+	<zscript><![CDATA[
+		self.page.title= "Quản lý video";
+	]]></zscript>
+	<n:section class="content-header">
+		<n:h1 class="header-title">Danh sách video</n:h1>
+	</n:section>
+	<n:section class="content">
+	    <n:div class="row">
+	    	<n:div class="col-md-12">
+		    	<n:div class="box box-info margin-box">
+		    		<n:div class="box-header">
+		    			<n:h3 class="box-title">Tìm kiếm</n:h3>
+	    				<n:div class="box-tools pull-right">
+	    					<n:button type="button" class="btn btn-box-tool" data-widget="collapse"><n:i class="fa fa-minus"></n:i></n:button>
+	    				</n:div>	    				
+	    			</n:div>
+	    			<n:div class="box-body">
+	    				<n:div class="row">
+	    					<n:div class="col-md-3">
+		    					<n:div class="form-group" >
+		    						<x:label class="control-label">Từ khóa</x:label>
+									<textbox class="form-control" value="@bind(vm.arg.tukhoa)" 
+										style="width:99%;display:inline;" placeholder="Nhập tiêu đề hoặc mô tả"
+										onOK="@command('cmd', notify=vm, attr='*')" />
+								</n:div>
+							</n:div>
+							<n:div class="col-md-3">
+		    					<n:div class="form-group" >
+		    						<x:label class="control-label">Trạng thái</x:label>
+		    						<combobox readonly="true" style="display:block" width="99%" placeholder="Tất cả"
+	    								model="@load(entry.trangThaiXuatBanList)" selectedItem="@bind(vm.arg.trangthaisoan)" >
+	    								<template name="model">
+	    									<comboitem value="@load(each.key)" label="@load(each.value eq '' ? 'Tất cả' : each.value)" />
+	    								</template>
+	    							</combobox>
+		    					</n:div>
+		    				</n:div>
+							<n:div class="col-md-3">
+	    						<x:label class="control-label">&#160;</x:label>
+	    						<n:div class="form-group">
+									<x:button class="btn btn-warning" type="button"
+						    			onClick="@command('cmd', notify=vm, attr='targetQuery')" >
+										<n:i class="fa fa-search"></n:i> TÌM KIẾM
+									</x:button>
+	    						</n:div>
+	    					</n:div>
+	    				</n:div>
+		    		</n:div>
+		    	</n:div>
+	    	</n:div>
+	    		<!-- /.box-header -->
+   			<n:div class="col-md-12">
+    			<n:div class="box box-success">
+    				<n:div class="box-header">
+	    				<n:h3 class="box-title"></n:h3>
+	    				<n:div class="box-tools pull-right">
+	    					<x:button class="btn btn-success" zk:if="${entry.quyen.video_them}" 
+	    						onClick="@command('redirectPage', zul='video/add.zul', vmArgs=vm, vm=null)">
+    							<n:i class="fa fa-plus"></n:i>&#160;&#160;Thêm mới
+    						</x:button>
+	    				</n:div>
+	    			</n:div>
+	    			<n:div class="box-body">
+    					<n:div class="dataTables_wrapper form-inline dt-bootstrap">
+    						<n:div class="row">
+    							<n:div class="col-md-12">
+    								<grid model="@load(vm.page(vm.targetQuery).fetch())" width="100%" id="grid"
+										emptyMessage="Danh sách không có chủ đề video nào" class="hidden-xs">
+										<columns>
+											<column label="STT" hflex="min" sclass="text-align-center"/>
+											<column label="Tên tiêu đề" width="90%" />		
+											<column label="Loại video" width="150px"/>
+											<column label="Trạng thái" hflex="min" sclass="text-align-center"/>		
+											<column label="Xuất bản" hflex="min" sclass="text-align-center"/>
+											<column label="Thao tác" width="80px" sclass="text-align-center"/>
+										</columns>
+										<template name="model">
+											<row apply="org.zkoss.bind.BindComposer" viewModel="@id('item') @init(each)">
+												<label value="@bind(forEachStatus.index + 1 + vm.arg.page * vm.arg.pagesize)" style="text-align:center;display:block"/>
+												<label value="@load(each.tieuDe)"/>
+												<label value="@load(each.txtLoai eq '0' ? 'Tệp đính kèm' : 'Liên kết video')"></label>
+												<n:span class="${each.setStyleStatus(each.trangThaiSoan)}">${each.trangThaiSoan eq null ? '   ' : each.trangThaiSoanText}</n:span>
+												<n:span class="${each.setStylePublishStatus(each.xuatBan)}">${each.xuatBan ? 'Có' : 'Không'}</n:span>
+												<div class="text-align-center">
+													<x:button class="btn btn-info btn-xs"  zk:if="${entry.quyen.video_sua}"
+														onClick="@command('redirectPage', zul='video/edit.zul',vmArgs=vm,vm=item)">
+														<n:i class="fa fa-pencil-square-o"></n:i>
+													</x:button>
+													<x:a class="btn btn-info btn-xs" zk:if="${entry.quyen.video_xem and !entry.quyen.video_sua}"
+														onClick="@command('redirectPage', zul='video/edit.zul',vmArgs=vm,vm=item)">
+														<n:i class="fa fa-eye"></n:i>
+													</x:a>
+													<x:a class="btn btn-danger btn-xs" zk:if="${entry.quyen.video_xoa}"
+														onClick="@command('deleteTrangThaiConfirmAndNotify', notify=vm, attr='targetQuery')">
+														<n:i class="fa fa-trash-o"></n:i>
+													</x:a>
+												</div>
+											</row>
+										</template>
+									</grid>
+    							</n:div>
+    						</n:div>
+    					</n:div>
+    					<paging pageSize="@load(vm.arg.pagesize)" totalSize="@load(vm.targetQuery.fetchCount())"
+							visible="@load(vm.targetQuery.fetchCount() > vm.arg.pagesize ? true : false)"
+							activePage="@bind(vm.arg.page)" onPaging="@command('cmd', notify=vm, atr='targetQuery')" />
+    				</n:div>
+   				</n:div>
+   			</n:div>    
+	    </n:div>
+	</n:section>
+</div>

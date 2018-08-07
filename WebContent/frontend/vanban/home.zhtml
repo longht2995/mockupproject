@@ -1,0 +1,45 @@
+<section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer"
+viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
+	<zscript><![CDATA[
+	                  linhvucs = entry.linhVucVanBans.getTargetQueryLinhVuc();
+	                  vanbans = entry.vanBans;
+	                  banners = entry.banners;
+	]]></zscript>
+      <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<div class="right-content">
+				<div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span>
+                  <a href="#" class="title-mg">VĂN BẢN</a>
+                </div>
+				 <div class="content-page">
+					<ul>
+						<a href="${ctxPath}/${resource}/vanbanmoi"><li><i class="fas fa-caret-right">&#160;</i>&#160;Văn bản mới</li></a>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Tất cả văn bản</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Cơ quan ban hành</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Lĩnh vực</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Loại văn bản</li>
+					</ul>
+				 </div>
+			</div>
+          <n:img zk:if="banners.targetQueryBannerGiaoTiep.fetch > 0" zk:forEach="banners.targetQueryBannerGiaoTiep.fetch" src="/files${each.bannerUrl}" width="100%"></n:img>
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">VĂN BẢN</a></h4>
+			</div>
+			<div class="page-content">
+				<div class="row">
+					<div class="box-item">
+						<div class="item-report" zk:forEach="${linhvucs.fetch()}">
+							<span class="title-baocao">${each.tenLinhVuc}</span>
+							<span class="count-baocao">${vanbans.getCount(each.id)}</span>
+							<span class="title-baocao">Văn bản</span>
+						</div>
+					</div>
+				</div>
+			</div>
+         </div>
+      </div>
+</section>

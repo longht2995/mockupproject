@@ -42,7 +42,7 @@
 							<combobox model="@load(vm.location)"
 								placeholder="Chọn vị trí banner"
 								value="@load(vm.locationBanner)"
-								selectedItem="@bind(vm.arg.location)">
+								selectedItem="@bind(vm.arg.location)" width="100%" readonly="true">
 								<template name="model">
 									<comboitem
 										label="@load(each.value)" />

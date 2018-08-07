@@ -22,6 +22,7 @@
 	                  vanban = vanbans.getTargetQueryById().fetchFirst();
 	                  list =  vanbans.getTargetQueryRelated(vanban == null ? 0 : vanban.loaiVanBan.id).fetch();
 	                  Clients.evalJavaScript("setTitle('"+vanban.trichYeu+"')");
+	                  banners = entry.banners;
 	]]></zscript>
 	<script>
 		function setTitle(title) {
@@ -37,7 +38,7 @@
                 </div>
 				 <div class="content-page">
 					<ul>
-						<li class="active" product = item, ob = ><i class="fas fa-caret-right">&#160;</i>&#160;Văn bản mới</li>
+						<li class="active"><i class="fas fa-caret-right">&#160;</i>&#160;Văn bản mới</li>
 						<li><i class="fas fa-caret-right">&#160;</i>&#160;Tất cả văn bản</li>
 						<li><i class="fas fa-caret-right">&#160;</i>&#160;Cơ quan ban hành</li>
 						<li><i class="fas fa-caret-right">&#160;</i>&#160;Lĩnh vực</li>
@@ -45,8 +46,8 @@
 					</ul>
 				 </div>
 			</div>
-          <img src="images/Banner1_1520218037287.png" width="100%">
-          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+          <n:img zk:if="banners.targetQueryBannerGiaoTiep.fetch > 0" zk:forEach="banners.targetQueryBannerGiaoTiep.fetch"
+          	 src="/files${each.bannerUrl}" width="100%"></n:img>
         </div>
         <div class="col-md-9 fixpadding-left">
 			<div class="page-title">
@@ -84,15 +85,17 @@
 						<td>${vanban.nguoiKy}</th>
 					  </tr>
 					  <tr>
-						<td class="align-baseline">Tải văn bản</th>
-						<td class="align-baseline">${vanban.file.fileUrl}</th>
+						<td class="align-baseline">Xem văn bản</th>
+						<td class="align-baseline"><a href="/files${vanban.file.fileUrl}"><i class="fas fa-eye"></i></a></th>
 					  </tr>
 				</table>
 				</div>
 				
 				<div zk:if="${list.size()>0}">
 					<h4>VĂN BẢN KHÁC</h4>
-					<span zk:forEach="${list}">${each.id}</span>
+					<ul>
+						<li zk:forEach="${list}"><a href="${ctxPath}/${resource}/id/${each.id}">${each.trichYeu}</a></li>
+					</ul>
 				</div>
 			</div>
          </div>

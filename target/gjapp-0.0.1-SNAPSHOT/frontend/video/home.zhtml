@@ -1,9 +1,10 @@
 <section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer">
 	<zscript><![CDATA[
-	        String id = execution.getParameter("id");
+	        String idvideo = execution.getParameter("idvideo");
 	        videos = entry.videos;
 			video = videos.getTargetQueryNoiBatOrById().fetchFirst();
 			list = videos.getTargetQueryVideo(video == null ? 0 : video.id).fetch();
+			banners = entry.banners;
 	]]></zscript>
       <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
       <div class="row">
@@ -18,8 +19,8 @@
 					</ul>
 				 </div>
 			</div>
-          <img src="images/Banner1_1520218037287.png" width="100%">
-          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+          <n:img zk:if="banners.targetQueryBannerGiaoTiep.fetch > 0" zk:forEach="banners.targetQueryBannerGiaoTiep.fetch"
+          	 src="/files${each.bannerUrl}" width="100%"></n:img>
         </div>
         <div class="col-md-9 fixpadding-left">
 			<div class="page-title">
@@ -39,7 +40,10 @@
 							<p class="date-item">${video.ngayXuatBan}</p>
 							<iframe zk:if="${video.txtLoai eq '1'}" width="100%" height="350px" src="${video.file.fileUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 							</iframe>
-							<z:div if="${id != null}">
+							<video zk:if="${video.txtLoai eq '0'}" width="100%" height="350px" controls>
+								<n:source src="/files${video.file.fileUrl}" type="video/mp4"></n:source>
+							</video>
+							<z:div if="${idvideo != null}">
 								<zscript>
 									<![CDATA[
 										Clients.evalJavaScript("setTitle('"+video.tieuDe+"')");
@@ -49,13 +53,26 @@
 							</z:div>
 							<div class="item-lienquan" zk:if="${list.size() > 0}">
 								<h4>VIDEO KHÁC</h4>
-								<div class="row">
-									<div class="col-md-3" zk:forEach="${list}">
-										<img src="images/ahihi.jpg" width="100%"></img>
-										<a href="${ctxPath}/${resource}/${each.chuDeVideo.id}/${video.alias}/${each.id}"><span>${each.tieuDe}</span></a>
-									</div>
-								</div>
-								
+								<div class="container-fluid fixpd-wrapper">
+									<div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
+						        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+						            <div zk:forEach="${list}" class="carousel-item col-md-3 ${forEachStatus.first ? 'active' : ''}">
+						            	<a href="${ctxPath}/${resource}/${each.chuDeVideo.id}/${video.alias}/${each.id}">
+							            	<n:img class="img-fluid mx-auto d-block" src="/files${each.image.medium}" width="100%"></n:img>
+							            	<span style="font-size:13px;">${each.tieuDe}</span>
+							            </a>
+						            </div>
+						        </div>
+						        <a zk:if="${list.size() >4}" class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+						            <i class="fa fa-chevron-left fa-lg text-color"></i>
+						            <span class="sr-only">Previous</span>
+						        </a>
+						        <a zk:if="${list.size() >4}" class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+						            <i class="fa fa-chevron-right fa-lg text-color"></i>
+						            <span class="sr-only">Next</span>
+						        </a>
+						    </div>
+							</div>
 							</div>
 						</div>
 						
@@ -71,5 +88,81 @@
 		function setUrl(url) {
 			history.replaceState(null, null, url);
 		}
+				$('#carouselExample').on('slide.bs.carousel', function (e) {
+
+    var $e = $(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 4;
+    var totalItems = $('.carousel-item').length;
+    
+    if (idx >= totalItems-(itemsPerSlide-1)) {
+        var it = itemsPerSlide - (totalItems - idx);
+        for (var i=0; i<it; i++) {
+            if (e.direction=="left") {
+                $('.carousel-item').eq(i).appendTo('.carousel-inner');
+            }
+            else {
+                $('.carousel-item').eq(0).appendTo('.carousel-inner');
+            }
+        }
+    }
+});
 	</script>
+		<style>
+		@media (min-width: 768px) {
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+        display: block;
+    }
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+    }
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+    }
+    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+	</style>
 </section>

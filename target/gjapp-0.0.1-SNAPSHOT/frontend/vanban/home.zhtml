@@ -3,6 +3,7 @@ viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
 	<zscript><![CDATA[
 	                  linhvucs = entry.linhVucVanBans.getTargetQueryLinhVuc();
 	                  vanbans = entry.vanBans;
+	                  banners = entry.banners;
 	]]></zscript>
       <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
       <div class="row">
@@ -14,7 +15,7 @@ viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
                 </div>
 				 <div class="content-page">
 					<ul>
-						<li><i class="fas fa-caret-right">&#160;</i>&#160;Văn bản mới</li>
+						<a href="${ctxPath}/${resource}/vanbanmoi"><li><i class="fas fa-caret-right">&#160;</i>&#160;Văn bản mới</li></a>
 						<li><i class="fas fa-caret-right">&#160;</i>&#160;Tất cả văn bản</li>
 						<li><i class="fas fa-caret-right">&#160;</i>&#160;Cơ quan ban hành</li>
 						<li><i class="fas fa-caret-right">&#160;</i>&#160;Lĩnh vực</li>
@@ -22,8 +23,7 @@ viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
 					</ul>
 				 </div>
 			</div>
-          <img src="images/Banner1_1520218037287.png" width="100%">
-          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+          <n:img zk:if="banners.targetQueryBannerGiaoTiep.fetch > 0" zk:forEach="banners.targetQueryBannerGiaoTiep.fetch" src="/files${each.bannerUrl}" width="100%"></n:img>
         </div>
         <div class="col-md-9 fixpadding-left">
 			<div class="page-title">
@@ -38,7 +38,6 @@ viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
 							<span class="title-baocao">Văn bản</span>
 						</div>
 					</div>
-					
 				</div>
 			</div>
          </div>

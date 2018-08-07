@@ -35,6 +35,7 @@ import vn.toancauxanh.cms.service.BannerService;
 import vn.toancauxanh.cms.service.CapBanHanhService;
 import vn.toancauxanh.cms.service.ChuDeVideoService;
 import vn.toancauxanh.cms.service.CoQuanBanHanhService;
+import vn.toancauxanh.cms.service.DanhMucService;
 import vn.toancauxanh.cms.service.HomeService;
 import vn.toancauxanh.cms.service.ImageService;
 import vn.toancauxanh.cms.service.LanguageService;
@@ -432,6 +433,10 @@ public class Entry extends BaseObject<Object> {
 	}
 	public final ThongBaoService getThongBaos(){
 		return new ThongBaoService();
+	}
+	//Hieu
+	public final DanhMucService getDanhMuc() {
+		return new DanhMucService();
 	}
 	public final List<String> getNoiDungActive() {
 		return Arrays.asList("chude", "baiviet", "video", "gallery", "linhvuchoidap", "hoidaptructuyen", "faqcategory",

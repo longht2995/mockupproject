@@ -1,0 +1,83 @@
+<section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer"
+viewModel="@id('vm') @init('vn.toancauxanh.cms.service.VanBanService')">
+	<zscript><![CDATA[
+	]]></zscript>
+      <p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<div class="right-content">
+				<div class="title-tintuc">
+                  <span><img class="logo-title" src="../assetsfe/images/icon-svg.svg"></span>
+                  <a href="#" class="title-mg">VĂN BẢN</a>
+                </div>
+				 <div class="content-page">
+					<ul>
+						<li class="active"><i class="fas fa-caret-right">&#160;</i>
+						&#160;Văn bản mới</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Tất cả văn bản</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Cơ quan ban hành</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Lĩnh vực</li>
+						<li><i class="fas fa-caret-right">&#160;</i>&#160;Loại văn bản</li>
+					</ul>
+				 </div>
+			</div>
+          <n:img zk:if="banners.targetQueryBannerGiaoTiep.fetch > 0" zk:forEach="banners.targetQueryBannerGiaoTiep.fetch" 
+          	src="/files${each.bannerUrl}" width="100%"></n:img>
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">VĂN BẢN</a></h4>
+			</div>
+			<div class="page-content">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label>Chọn lĩnh vực</label>
+							<z:combobox id="cbx2" readonly="true" placeholder="Chọn lĩnh vực" 
+							model="@load(linhvucvanbans.listLinhVucVanBanAndNull)" 
+							value="${vm.selectLinhVuc.tenLinhVuc}">
+								<template name="model">
+									<z:comboitem label="${each.tenLinhVuc eq null ? 'Chọn lĩnh vực' : each.tenLinhVuc}" value="${each.id}"></z:comboitem>
+								</template>
+							</z:combobox>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Địa chỉ họ tên</label>
+							<z:textbox id="txtHoTen" class="form-control input-edit"
+								width="100%"/>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Địa chỉ địa chỉ</label>
+							<z:textbox id="txtDiaChi" class="form-control input-edit"
+								width="100%"/>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Nhập số điện thoại</label>
+							<z:textbox id="txtSDT" class="form-control input-edit"
+								width="100%"/>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Địa chỉ email</label>
+							<z:textbox id="txtEmail" class="form-control input-edit"
+								width="100%"/>
+						</div>
+						<div class="form-group col-md-6">
+							<label>Tiêu đề</label>
+							<z:textbox id="txtTieuDe" class="form-control input-edit"
+								width="100%"/>
+						</div>
+						<div class="form-group col-md-12">
+							<label>Nội dung câu hỏi</label>
+							<z:textbox rows="5" id="txtNoiDung" class="form-control input-edit"
+								width="100%"/>
+						</div>
+						<div class="form-group col-md-6 mb-4">
+							<button type="submit" class="btn btn-primary" 
+								onClick="">Gửi
+							</button>
+						</div>
+					</div>
+			</div>
+         </div>
+         <style>.page-content .form-control{background-color:#fff;}</style>
+      </div>
+</section>

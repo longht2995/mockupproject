@@ -1,4 +1,11 @@
-<header xmlns:zk="zk" xmlns:z="zul" >
+<header xmlns:zk="zk" xmlns:z="zul"
+	apply="org.zkoss.bind.BindComposer">
+	<zscript><![CDATA[
+			thamso = entry.thamSos;
+			danhMuc = entry.danhMuc;
+			chuDeTinTuc = danhMuc.getChuDeTinTuc();
+			chuDeGioiThieu = danhMuc.getChuDeGioiThieu();
+		]]></zscript>
 		<div class="banner-top">
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-light bg-nav">
@@ -8,14 +15,22 @@
           </button>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Trang chủ</a>
-              </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Giới thiệu</a>
+                <a class="${resource eq ' ' ? 'nav-link active': 'nav-link'}" href="${ctxPath}/">Trang chủ</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Tin tức</a>
+              <li class="${resource eq 'gioithieu' ? 'nav-item active dropdown': 'nav-item dropdown'}" zk:if="${chuDeGioiThieu eq null ? false : true}">
+                <a class="nav-link" href="${ctxPath}/chuDeGioiThieu.getName()/chuDeGioiThieu.getId()">${chuDeGioiThieu.name}</a>
+                 <span class="showdropdown dropdown-toggle" data-toggle="dropdown" zk:if="${danhMuc.cdgt eq null ? false : true}"></span>
+                <div class="dropdown-menu" zk:if="${danhMuc.cdgt eq null ? false : true}">
+                  <a zk:forEach="${danhMuc.cdgt}" class="dropdown-item" href="#">${each.name}</a>
+                </div>
+              </li>
+              <li class="${resource eq 'tintuc' ? 'nav-item active dropdown': 'nav-item dropdown'}" zk:if="${chuDeTinTuc eq null ? false : true}">
+                <a class="nav-link" href="${ctxPath}/${chuDeTinTuc.alias}/${chuDeTinTuc.id}">${chuDeTinTuc.name}</a>
+                 <span class="showdropdown dropdown-toggle" data-toggle="dropdown"></span>
+                <div class="dropdown-menu" zk:if="${danhMuc.cdtt eq null ? false : true}">
+                  <a zk:forEach="${danhMuc.cdtt}" class="dropdown-item" href="#">${each.name}</a>
+                </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#"  id="navbardrop1">Tương tác cử tri</a>
@@ -31,13 +46,11 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Đại biểu HĐND</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="file:///C:/Users/Yuu/Desktop/chính%20phủ/index1.html" id="navbardrop">Liên hệ</a>
-                <span class="showdropdown dropdown-toggle" data-toggle="dropdown"></span>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
+              <li class="nav-item dropdown" zk:if="${danhMuc.chuDeLienHe eq null ? false : true}">
+                <a class="nav-link" href="file:///C:/Users/Yuu/Desktop/chính%20phủ/index1.html">${danhMuc.chuDeLienHe.name}</a>
+                 <span class="showdropdown dropdown-toggle" data-toggle="dropdown"></span>
+                <div class="dropdown-menu" zk:if="${danhMuc.cdlh eq null ? false : true}">
+                  <a zk:forEach="${danhMuc.cdlh}" class="dropdown-item" href="#">${each.name}</a>
                 </div>
               </li>
             </ul>

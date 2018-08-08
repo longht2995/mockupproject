@@ -1,6 +1,7 @@
 <div xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer">
 	<zscript><![CDATA[
 	                  banners = entry.banners;
+	                  String cat = execution.getParameter("cat");
 	]]></zscript>
 	<div class="right-content">
 		<div class="title-tintuc">
@@ -12,7 +13,7 @@
 		<div class="content-page">
 			<ul>
 				<a href="${ctxPath}/${resource}/vanbanmoi">
-					<li>
+					<li class="${cat eq '1' ? 'active' : ''}">
 						<i class="fas fa-caret-right">&#160;</i>
 						&#160;Văn bản mới
 					</li>
@@ -20,6 +21,9 @@
 			</ul>
 		</div>
 	</div>
-	<n:img style="margin-bottom:15px;" zk:forEach="${banners.targetQueryBannerGiaoTiep.fetch()}"
+	<a zk:forEach="${banners.targetQueryBannerGiaoTiep.fetch()}" href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}">
+		<n:img style="margin-bottom:15px;"
           	 src="/files${each.bannerUrl}" width="100%"></n:img>
+	</a>
+	
 </div>

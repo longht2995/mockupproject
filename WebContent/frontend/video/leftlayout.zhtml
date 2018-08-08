@@ -3,6 +3,7 @@
 	<zscript><![CDATA[
 			banners = entry.banners;
 			chudevideos = entry.chuDeVideos;
+			String cat = execution.getParameter("chudevideo");
 	]]></zscript>
 	<div class="right-content">
 		<div class="title-tintuc">
@@ -15,7 +16,7 @@
 			<ul>
 				<a zk:forEach="${chudevideos.listChuDeVideo}"
 					href="${ctxPath}/${resource}/${each.id}">
-					<li>
+					<li class="${each.id eq cat ? 'active' : ''}">
 						<i class="fas fa-caret-right">&#160;</i>
 						&#160;${each.tenChuDe}
 					</li>
@@ -23,8 +24,8 @@
 			</ul>
 		</div>
 	</div>
-	<n:img style="margin-bottom:15px;"
-		zk:forEach="${banners.targetQueryBannerGiaoTiep.fetch()}"
-		src="/files${each.bannerUrl}" width="100%">
-	</n:img>
+	<a zk:forEach="${banners.targetQueryBannerGiaoTiep.fetch()}" href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}">
+		<n:img style="margin-bottom:15px;"
+          	 src="/files${each.bannerUrl}" width="100%"></n:img>
+	</a>
 </div>

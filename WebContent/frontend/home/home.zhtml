@@ -10,7 +10,8 @@
         <div class="col-md-9 fixpadding-right">
         <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftTop.bannerUrl != null}" 
             	src="/files${homes.targetQueryBannerLeftTop.bannerUrl}" 
-            	style="margin-bottom:15px;" width="100%"></n:img>
+            	style="margin-bottom:15px;" width="100%" 
+            	href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}"></n:img>
           <div class="tintuc-noibat">
               <!--Start Slide Image-->
              <div class="row">
@@ -59,7 +60,9 @@
               <!--End Slide Image-->
             </div>
             <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftMidle.bannerUrl != null}" 
-            	src="/files${homes.targetQueryBannerLeftMidle.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
+            	src="/files${homes.targetQueryBannerLeftMidle.bannerUrl}" width="100%" 
+            	style="margin-top:15px;"
+            	href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}"></n:img>
             <div class="row" style="margin-top:15px;">
             <!-- Chu de thuong truc HDND -->
               <div class="col-md-6 fixpadding-right">
@@ -116,7 +119,9 @@
               <!-- End Chu de ban thuong truc HDND -->
             </div>
             <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftBottom.bannerUrl != null}" 
-            	src="/files${homes.targetQueryBannerLeftBottom.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
+            	src="/files${homes.targetQueryBannerLeftBottom.bannerUrl}" width="100%" 
+            	style="margin-top:15px;"
+            	href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}"></n:img>
             <!--Bai viet duoi-->
             <div class="row" style="margin-top:15px;">
               <div class="col-md-6 fixpadding-right">

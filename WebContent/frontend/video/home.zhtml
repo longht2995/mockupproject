@@ -50,9 +50,9 @@
 											<div zk:forEach="${list}"
 												class="carousel-item col-md-3 ${forEachStatus.first ? 'active' : ''}">
 												<a href="${ctxPath}/${resource}/${each.chuDeVideo.id}/${video.alias}/${each.id}">
-													<n:img id="imgVideoLQ" class="img-fluid mx-auto d-block"
+													<n:img class="img-fluid mx-auto d-block"
 														src="/files${each.image.imageUrl}" width="100%"
-														onerror="changeImg('${ctxPath}/assetsfe/images/sm_noimage.png')">
+														onerror="changeImg('${ctxPath}/assetsfe/images/sm_noimage.png',this)">
 													</n:img>
 													<span style="font-size:13px;">${each.tieuDe}</span>
 												</a>
@@ -87,8 +87,8 @@
 		function setUrl(url) {
 			history.replaceState(null, null, url);
 		}
-		function changeImg(img) {
-		    document.getElementById("imgVideoLQ").src = img;
+		function changeImg(img,element) {
+		    element.src = img;
 		}
 		$('#carouselExample').on('slide.bs.carousel', function (e) {
 	    var $e = $(e.relatedTarget);

@@ -24,7 +24,6 @@ public class DanhMucService extends BasicService<DanhMuc> {
 	public JPAQuery<DanhMuc> getTargetQuery() {
 		String paramTuKhoa = MapUtils.getString(argDeco(), "tukhoa", "").trim();
 		String trangThai = MapUtils.getString(argDeco(), "trangthai", "");
-		Long maDanhMuc = MapUtils.getLongValue(argDeco(), "cat");
 		JPAQuery<DanhMuc> q = find(DanhMuc.class).where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA));
 
 		if (paramTuKhoa != null && !paramTuKhoa.isEmpty()) {
@@ -33,9 +32,6 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		}
 		if (!trangThai.isEmpty()) {
 			q.where(QDanhMuc.danhMuc.trangThai.eq(trangThai));
-		}
-		if (maDanhMuc > 0 || maDanhMuc != null) {
-			q = getChild(maDanhMuc);
 		}
 		return q.orderBy(QDanhMuc.danhMuc.ngaySua.desc());
 	}
@@ -127,6 +123,7 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		}
 
 		openObject(model, danhMucGoc.getNode());
+		
 		BindUtils.postNotifyChange(null, null, this, "sizeOfCategories");
 		return model;
 	}
@@ -164,7 +161,17 @@ public class DanhMucService extends BasicService<DanhMuc> {
 	// dùng để kiểm tra danh sách chủ đề
 	// có rỗng không
 	public long getSizeOfCategories() {
+		
+		String param = MapUtils.getString(argDeco(),"tukhoa","").trim();
+		String trangThai = MapUtils.getString(argDeco(),"trangthai","");
 		JPAQuery<DanhMuc> q = find(DanhMuc.class).where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA));
+		
+		if(!trangThai.isEmpty()) {
+			q.where(QDanhMuc.danhMuc.trangThai.eq(trangThai));
+		}
+		if(!param.isEmpty()) {
+			q.where(QDanhMuc.danhMuc.name.toLowerCase().contains(param.toLowerCase()));
+		}
 		return q.fetchCount();
 	}
 

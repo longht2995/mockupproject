@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -52,7 +53,7 @@ public class TinBai extends Asset<TinBai> {
 	private String maDinhDanh = "";
 	private Image avatarImage;
 	private int soThuTu;
-	private String content = "";
+	private String content;
 	private String description = "";
 	private String alias = "";
 	private Date dateBeginTime;
@@ -189,6 +190,7 @@ public class TinBai extends Asset<TinBai> {
 		this.soThuTu = soThuTu;
 	}
 
+	@Column(columnDefinition="TEXT")
 	public String getContent() {
 		return content;
 	}
@@ -197,6 +199,7 @@ public class TinBai extends Asset<TinBai> {
 		this.content = Strings.nullToEmpty(content);
 	}
 
+	@Column(length = 750)
 	public String getDescription() {
 		return description;
 	}
@@ -205,6 +208,7 @@ public class TinBai extends Asset<TinBai> {
 		this.description = Strings.nullToEmpty(description);
 	}
 
+	@Column(length = 1000)
 	public String getAlias() {
 		if (alias.isEmpty() && "".equals(alias)) {
 			alias = unAccent(getTitle());

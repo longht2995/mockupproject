@@ -188,7 +188,6 @@ public class BaseObject<T> extends CoreObject<T> {
 	}
 	
 	public void bootstrapNhanVien() {
-		System.out.println("TT_AP_DUNG: " + core().TT_AP_DUNG);
 		JPAQuery<NhanVien> q = find(NhanVien.class)
 				.where(QNhanVien.nhanVien.daXoa.isFalse())
 				.where(QNhanVien.nhanVien.trangThai.eq(core().TT_AP_DUNG));

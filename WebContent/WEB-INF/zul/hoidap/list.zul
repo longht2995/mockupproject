@@ -106,7 +106,7 @@
 								<column label="Tiêu đề" />
 								<column label="Nội dung" />
 								<column label="Lĩnh vực" />
-								<column label="Người hỏi" />
+								<column label="Người hỏi" hflex="min" />
 								<column label="Xuất bản" hflex="min" />
 								<column label="Số điện thoại" hflex="min" />
 								<column label="Trạng thái" hflex="min" />

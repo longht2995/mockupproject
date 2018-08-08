@@ -37,8 +37,6 @@ import org.zkoss.zul.Window;
 
 import com.google.common.base.Strings;
 
-import vn.toancauxanh.model.NhanVien;
-
 @Entity
 @Table(name = "hoidap")
 public class HoiDap extends Asset<HoiDap> {
@@ -55,7 +53,6 @@ public class HoiDap extends Asset<HoiDap> {
 
 	private boolean xuatBan = false;
 	private String email = "";
-	private NhanVien daiBieuGiamSat;
 	private String cauTraLoi = "";
 	private List<FileEntry> fileCauHoi = new ArrayList<FileEntry>();
 	private List<FileEntry> fileTraLoi = new ArrayList<FileEntry>();
@@ -134,15 +131,6 @@ public class HoiDap extends Asset<HoiDap> {
 
 	public void setNgayTraLoi(Date ngayTraLoi) {
 		this.ngayTraLoi = ngayTraLoi;
-	}
-
-	@ManyToOne
-	public NhanVien getDaiBieuGiamSat() {
-		return daiBieuGiamSat;
-	}
-
-	public void setDaiBieuGiamSat(NhanVien daiBieuGiamSat) {
-		this.daiBieuGiamSat = daiBieuGiamSat;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER)

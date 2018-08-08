@@ -82,15 +82,17 @@ public class TinBaiService extends BasicService<TinBai> {
 
 	public List<TinBai> getTop5ByThamSo(ThamSoEnum ts) {
 		List<TinBai> list = new ArrayList<TinBai>();
-		ThamSo objTS = find(ThamSo.class).where(QThamSo.thamSo.trangThai.ne(core().TT_DA_XOA))
-				.where(QThamSo.thamSo.ma.eq(ts)).fetchFirst();
-		if (objTS.getValue() > 0) {
-			DanhMuc objDanhMuc = find(DanhMuc.class).where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA))
-					.where(QDanhMuc.danhMuc.id.eq(objTS.getValue())).fetchFirst();
-			if (objDanhMuc != null) {
-				list = find(TinBai.class).where(QTinBai.tinBai.trangThai.ne(core().TT_DA_XOA))
-						.where(QTinBai.tinBai.categories.contains(objDanhMuc)).limit(5)
-						.orderBy(QTinBai.tinBai.ngaySua.desc()).fetch();
+		if (ts != null) {
+			ThamSo objTS = find(ThamSo.class).where(QThamSo.thamSo.trangThai.ne(core().TT_DA_XOA))
+					.where(QThamSo.thamSo.ma.eq(ts)).fetchFirst();
+			if (objTS.getValue() > 0) {
+				DanhMuc objDanhMuc = find(DanhMuc.class).where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA))
+						.where(QDanhMuc.danhMuc.id.eq(objTS.getValue())).fetchFirst();
+				if (objDanhMuc != null) {
+					list = find(TinBai.class).where(QTinBai.tinBai.trangThai.ne(core().TT_DA_XOA))
+							.where(QTinBai.tinBai.categories.contains(objDanhMuc)).limit(5)
+							.orderBy(QTinBai.tinBai.ngaySua.desc()).fetch();
+				}
 			}
 		}
 		return list;

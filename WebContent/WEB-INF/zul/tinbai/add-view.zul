@@ -61,7 +61,7 @@
 				<div zclass="form-group">
 					<hlayout class="control-label">
 						<x:label>Nội dung<n:small class="required"> *</n:small></x:label>
-					</hlayout>						
+					</hlayout>			
 					<vlayout>
 						<ckeditor toolbar="Full" id="WYSIWYG" width="100%"
 							height="400px" 

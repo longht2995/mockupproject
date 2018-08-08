@@ -209,7 +209,6 @@ public class Image extends Asset<Image> {
 	@Command
 	public void saveImgNotify(@BindingParam("list") final Object listObject, @BindingParam("attr") final String attr,
 			@BindingParam("wdn") final Window wdn) throws IOException {
-		LOG.info("save image");
 		if (beforeSaveImg()) {
 			save();
 			wdn.detach();
@@ -263,7 +262,6 @@ public class Image extends Asset<Image> {
 
 	@Command
 	public void attachImages(@BindingParam("media") final Media media) {
-		LOG.info("attachImages");
 		if (media instanceof org.zkoss.image.Image) {
 			String tenFile = media.getName();
 			tenFile = tenFile.replace(" ", "_");
@@ -282,7 +280,6 @@ public class Image extends Asset<Image> {
 		org.zkoss.image.Image imageContent2 = getImageContent();
 		if (imageContent2 != null) {
 			// luu hinh
-			LOG.info("saveImage() :" + folderStore() + getName());
 			setImageUrl(folderUrl().concat(getName()));
 			final File baseDir = new File(folderStore().concat(getName()));
 			Files.copy(baseDir, imageContent2.getStreamData());
@@ -291,7 +288,6 @@ public class Image extends Asset<Image> {
 
 	@Command
 	public void deleteImg() {
-		LOG.info("deleteImg--");
 		setImageContent(null);
 		setName("");
 		flagSetImage = false;

@@ -5,7 +5,6 @@ import org.zkoss.util.resource.Labels;
 
 import com.querydsl.jpa.impl.JPAQuery;
 
-import vn.toancauxanh.gg.model.QBanner;
 import vn.toancauxanh.gg.model.QThongBao;
 import vn.toancauxanh.gg.model.ThongBao;
 import vn.toancauxanh.service.BasicService;
@@ -21,9 +20,9 @@ public class ThongBaoService extends BasicService<ThongBaoService>{
 			q.where(QThongBao.thongBao.tieuDe.like(tukhoa));
 		}
 		if (!trangThai.isEmpty()) {
-			q.where(QBanner.banner.trangThai.eq(trangThai));
+			q.where(QThongBao.thongBao.trangThai.eq(trangThai));
 		}
-		q.orderBy(QBanner.banner.ngaySua.desc());
+		q.orderBy(QThongBao.thongBao.ngaySua.desc());
 		return q;
 	}
 }

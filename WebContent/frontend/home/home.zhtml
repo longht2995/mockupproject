@@ -10,28 +10,40 @@
         <div class="col-md-9 fixpadding-right">
         <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftTop.bannerUrl != null}" 
             	src="/files${homes.targetQueryBannerLeftTop.bannerUrl}" 
-            	style="margin-bottom:15px;" width="100%"></n:img>
+            	style="margin-bottom:15px;" width="100%" 
+            	href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}"></n:img>
           <div class="tintuc-noibat">
               <!--Start Slide Image-->
              <div class="row">
                 <div class="col-md-8 bd-slide">
-                  <div class="carousel slide" data-ride="carousel">
+                  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
-                      <div class="${forEachStatus.first ? 'carousel-item active' :  'carousel-item'}" zk:forEach="${tinbaiPB.getListTinBaiSlide().limit(3).fetch()}">
+                      <div class="${forEachStatus.first ? 'carousel-item active' :  'carousel-item'}" 
+                      	zk:forEach="${tinbaiPB.getListTinBaiSlide().limit(3).fetch()}">
                         <div zk:if="${not empty each.categories}">
                         	<n:img class="img-slide" src="/files${each.avatarImage.imageUrl}" width="100%"></n:img>
-	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" class="title-noibat">${each.title}</a>
-	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" class="baiviet-mota">${each.description}</a>
+	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" 
+	                        	class="title-noibat">${each.title}</a>
+	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" 
+	                        	class="baiviet-mota">${each.description}</a>
                         </div>
                       </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
+                    <a class="carousel-control-prev"
+                    	href="#carouselExampleControls" role="button"
+                    	data-slide="prev">
+                    	<span class="carousel-control-prev-icon"
+                    		aria-hidden="true">
+                    	</span>
+                    	<span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
+                    <a class="carousel-control-next"
+                    	href="#carouselExampleControls" role="button"
+                    	data-slide="next">
+                    	<span class="carousel-control-next-icon"
+                    		aria-hidden="true">
+                    	</span>
+                    	<span class="sr-only">Next</span>
                     </a>
                   </div>
                 </div>
@@ -48,7 +60,9 @@
               <!--End Slide Image-->
             </div>
             <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftMidle.bannerUrl != null}" 
-            	src="/files${homes.targetQueryBannerLeftMidle.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
+            	src="/files${homes.targetQueryBannerLeftMidle.bannerUrl}" width="100%" 
+            	style="margin-top:15px;"
+            	href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}"></n:img>
             <div class="row" style="margin-top:15px;">
             <!-- Chu de thuong truc HDND -->
               <div class="col-md-6 fixpadding-right">
@@ -105,7 +119,9 @@
               <!-- End Chu de ban thuong truc HDND -->
             </div>
             <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftBottom.bannerUrl != null}" 
-            	src="/files${homes.targetQueryBannerLeftBottom.bannerUrl}" width="100%" style="margin-top:15px;"></n:img>
+            	src="/files${homes.targetQueryBannerLeftBottom.bannerUrl}" width="100%" 
+            	style="margin-top:15px;"
+            	href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}"></n:img>
             <!--Bai viet duoi-->
             <div class="row" style="margin-top:15px;">
               <div class="col-md-6 fixpadding-right">
@@ -161,66 +177,7 @@
         </div>
         <!--Right Layout-->
         <div class="col-md-3 fixpadding-left">
-          <n:img class="banner-left" zk:if="${homes.targetQueryBannerRightTop.bannerUrl != null}" 
-            	src="/files${homes.targetQueryBannerRightTop.bannerUrl}" width="100%"></n:img>
-          <div class="right-content">
-            <div class="title-right">
-              <a href="#">THÔNG BÁO MỚI</a>
-            </div>
-            <marquee onmouseover="this.stop();" onmouseout="this.start();" behavior="alternate" scrollamount="2" direction="up" class="content-rlayout">
-              <div class="item-marque">
-                <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
-              </div>
-              <div class="item-marque">
-                <a href="#">Hòa Phú: Tập huấn kiến thức vệ sinh an toàn thực phẩm cho gần 150 hộ kinh doanh dịch vụ ăn uống, thức ăn đường phố</a>
-              </div>
-              <div class="item-marque">
-                <a href="#">Đoàn đại biểu Quốc hội đơn vị thành phố Đà Nẵng tiếp xúc cử tri huyện Hòa Vang</a>
-              </div>
-              <div class="item-marque">
-                <a href="#">Quy định giá đất ở đối với các đường chưa đặt tên tại các Khu dân cư trên địa bàn huyện Hòa Vang</a>
-              </div>
-              <div class="item-marque">
-                <a href="#">Đại hội Hội Người mù huyện Hòa Vang lần thứ IX, nhiệm kỳ 2017-2022</a>
-              </div>
-            </marquee>
-          </div>
-          <n:img class="banner-left" zk:if="${homes.targetQueryBannerRightMidle.bannerUrl != null}" 
-            	src="/files${homes.targetQueryBannerRightMidle.bannerUrl}" width="100%"></n:img>
-          <div class="right-content">
-            <div class="title-right">
-              <a href="${ctxPath}/vanban">VĂN BẢN MỚI</a>
-            </div>
-            <marquee onmouseover="this.stop();" onmouseout="this.start();" 
-            	behavior="alternate" scrollamount="2" direction="up" class="content-rlayout">
-				<div class="item-marque" zk:forEach="${homes.targetQueryVanBan.fetch()}" 
-					viewModel="@id('vb') @init(each)">
-		           <a href="${ctxPath}/vanban/id/${vb.id}">${vb.trichYeu}</a>
-		        </div>
-            </marquee>
-          </div>
-          <n:img class="banner-left" zk:if="${homes.targetQueryBannerRightBottom.bannerUrl != null}" 
-            	src="/files${homes.targetQueryBannerRightBottom.bannerUrl}" width="100%"></n:img>
-          <div class="right-content">
-            <div class="title-right">
-              <a href="${ctxPath}/video">VIDEO</a>
-            </div>
-            <div class="content-rlayout content-video" style="height:auto;">
-              <div class="item-video" zk:forEach="${homes.targetQueryVideo.fetch()}" 
-              	viewModel="@id('vd') @init(each)">
-               	<div class="${forEachStatus.first ? 'item-video-nb' : 'item-video-mg'}">
-               		<iframe zk:if="${forEachStatus.first && vd.txtLoai eq '1'}" width="100%" 
-               			src="${vd.file.fileUrl}" frameborder="0" allow="autoplay; encrypted-media" 
-               			allowfullscreen></iframe>
-               		<video zk:if="${forEachStatus.first && vd.txtLoai eq '0'}" width="100%" controls>
-								<n:source src="../files${vd.file.fileUrl}" type="video/mp4"></n:source>
-							</video>
-               		<a zk:if="${!forEachStatus.first}" 
-               			href="${ctxPath}/video/${each.chuDeVideo.id}/id/${each.id}" >${vd.tieuDe}</a>
-               	</div>
-              </div>
-            </div>
-          </div>
+        	<z:include src="/frontend/home/rightlayout.zhtml"></z:include>
         </div>
         <!--End Right Layout-->
       </div>

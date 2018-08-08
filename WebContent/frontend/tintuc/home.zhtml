@@ -1,0 +1,50 @@
+<section xmlns:zk="zk" xmlns:z="zul">
+	<zscript><![CDATA[               
+			tinBai = entry.tinBais;
+			danhMuc = entry.danhMuc;
+			hd= entry.headerService;
+		]]></zscript>
+
+      <p class="date-now">${hd.currentTime}</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<div class="right-content">
+				<div class="title-tintuc">
+                  <span><img class="logo-title" src="images/icon-svg.svg"></span><a href="#" class="title-mg">${danhMuc.getById() ne null ? danhMuc.getById().getName() : 'Tên chủ đề'}</a>
+                </div>
+				 <div class="content-page">
+					<ul>
+						<li zk:forEach="${danhMuc.targetQuery.fetch()}"><i class="fas fa-caret-right">&#160;</i>&#160;${each.name}</li>
+					</ul>
+				 </div>
+			</div>
+          <img src="images/Banner1_1520218037287.png" width="100%">
+          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">${danhMuc.getById() ne null ? danhMuc.getById().getName() : 'Tên chủ đề'}</a></h4>
+			</div>
+			<div class="page-content">
+				<div class="item-tintuc" zk:forEach="${tinBai.targetQuery.fetch()}">
+                      <div class="item-img">
+                        <img src="images/s_hdndhuyen2_1499843774462.jpg" width="183px" height="113px">
+                      </div>
+                      <div class="item-content-bd">
+                        <a href="#">${each.title}</a>
+						<div class="tintuc-date">
+							<span>${each.dateBeginTime}</span>
+						</div>
+						<div style="font-size:13px;">
+							<span>${each.description}</span>
+						</div>
+						<div class="readmore">
+							<a href="#">Xem chi tiết>></a>
+						  </div>
+                      </div>
+					  
+                 </div>
+			</div>
+         </div>
+      </div>
+</section>

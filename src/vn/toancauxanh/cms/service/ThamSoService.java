@@ -109,6 +109,9 @@ public class ThamSoService extends BasicService<ThamSo> {
 		List<ThamSo> list = new ArrayList<ThamSo>();
 		JPAQuery<ThamSo> q = find(ThamSo.class).where(QThamSo.thamSo.trangThai.ne(core().TT_DA_XOA));
 		list.addAll(q.fetch());
+		if (list.isEmpty() || list == null) {
+			isFirst();
+		}
 		return list;
 	}
 

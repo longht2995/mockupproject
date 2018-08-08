@@ -4,7 +4,7 @@
 	validationMessages="@id('vmsgs')" action="show: slideIn" mode="modal"
 	contentStyle="overflow:auto;" closable="true" width="800px"
 	onClose="@command('invokeGG', notify=vmArgs, detach=wdn, attr='model')"
-	whatever="@load(true,after='saveHoiDap') @converter('vn.toancauxanh.service.DetachConverter')">
+	whatever="@load(true,after={'saveHoiDap','xuatBan'}) @converter('vn.toancauxanh.service.DetachConverter')">
 	<zscript>
 		vmArgs = arg.get("vmArgs");
 	</zscript>
@@ -17,7 +17,7 @@
 					</hlayout>
 					<vlayout>
 						<textbox width="100%" class="form-control" maxlength="150"
-							value="@load(vm.nguoiHoi) @save(vm.nguoiHoi, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+							value="@bind(vm.nguoiHoi) @save(vm.nguoiHoi, before={'saveHoiDap','xuatBan'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
 						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
 					</vlayout>
 				</div>
@@ -62,7 +62,7 @@
 					</hlayout>
 					<vlayout>
 						<textbox width="100%" class="form-control" maxlength="150"
-							value="@load(vm.tieuDe) @save(vm.tieuDe, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+							value="@bind(vm.tieuDe) @save(vm.tieuDe, before={'saveHoiDap','xuatBan'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
 						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
 					</vlayout>
 				</div>
@@ -75,7 +75,7 @@
 						<x:label>Nội dung câu hỏi/góp ý<n:small class="required"> *</n:small></x:label>
 					</hlayout>
 					<vlayout>
-						<textbox width="100%" rows="5" maxlength="250" value="@bind(vm.noiDung) @save(vm.noiDung, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
+						<textbox width="100%" rows="5" maxlength="250" value="@bind(vm.noiDung) @save(vm.noiDung, before={'saveHoiDap','xuatBan'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
 						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
 					</vlayout>
 				</div>
@@ -126,7 +126,7 @@
 					</hlayout>
 					<vlayout>
 						<datebox format="dd-MM-yyyy KK:mm a" timeZone="GMT+7" width="200px" cols="20"
-							sclass="mis-datebox-inner" value="@load(vm.ngayPhanAnh) @save(vm.ngayTao, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"/>
+							sclass="mis-datebox-inner" value="@bind(vm.ngayPhanAnh) @save(vm.ngayTao, before={'saveHoiDap','xuatBan'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"/>
 						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
 					</vlayout>
 				</div>
@@ -140,31 +140,13 @@
 						<combobox  readonly="true" disabled="@load(vm.ckEditorPopup)" class="his"
 							model="@load(entry.linhVucHoiDap.listLinhVucAnhNull)"
 							value="@load(vm.linhVuc eq null ? 'Chọn lĩnh vực' : vm.linhVuc.tenLinhVuc)"
-							selectedItem="@load(vm.linhVuc) @save(vm.linhVuc, before='saveHoiDap') @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"
+							selectedItem="@load(vm.linhVuc)"
 							width="100%">
 							<template name="model">
 								<comboitem label="@load(each.tenLinhVuc eq null ? 'Chọn lĩnh vực' : each.tenLinhVuc)" />
 							</template>
 						</combobox>
 						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
-					</vlayout>
-				</div>
-			</div>
-			<div zclass="col-lg-6 col-md-6 col-sm-6">
-				<div zclass="form-group">
-					<hlayout class="control-label">
-						<x:label>Đại biểu giám sát</x:label>
-					</hlayout>
-					<vlayout>
-						<combobox  readonly="true" disabled="@load(vm.ckEditorPopup)" class="his"
-							model="@load(entry.nhanViens.listDaiBieuAndNull)"
-							value="@load(vm.daiBieuGiamSat eq null ? 'Chọn đại biểu giám sát' : vm.daiBieuGiamSat.hoVaTen)"
-							selectedItem="@bind(vm.daiBieuGiamSat)"
-							width="100%">
-							<template name="model">
-								<comboitem label="@load(each.hoVaTen eq null ? 'Chọn đại biểu giám sát' : each.hoVaTen)" />
-							</template>
-						</combobox>
 					</vlayout>
 				</div>
 			</div>

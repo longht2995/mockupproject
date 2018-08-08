@@ -1,0 +1,30 @@
+<div xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client"
+	apply="org.zkoss.bind.BindComposer">
+	<zscript><![CDATA[
+			banners = entry.banners;
+			chudevideos = entry.chuDeVideos;
+	]]></zscript>
+	<div class="right-content">
+		<div class="title-tintuc">
+			<span>
+				<img class="logo-title" src="../assetsfe/images/icon-svg.svg">
+			</span>
+			<a href="${ctxPath}/${resource}" class="title-mg">VIDEO</a>
+		</div>
+		<div class="content-page">
+			<ul>
+				<a zk:forEach="${chudevideos.listChuDeVideo}"
+					href="${ctxPath}/${resource}/${each.id}">
+					<li>
+						<i class="fas fa-caret-right">&#160;</i>
+						&#160;${each.tenChuDe}
+					</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+	<n:img style="margin-bottom:15px;"
+		zk:forEach="${banners.targetQueryBannerGiaoTiep.fetch()}"
+		src="/files${each.bannerUrl}" width="100%">
+	</n:img>
+</div>

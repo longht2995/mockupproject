@@ -150,9 +150,11 @@ public class BannerService extends BasicService<Banner> {
 	}
 	public JPAQuery<Banner> getTargetQueryBannerGiaoTiep() {
 		JPAQuery<Banner> q = find(Banner.class)
-				.where(QBanner.banner.trangThai.ne(core().TT_DA_XOA));
+				.where(QBanner.banner.trangThai.ne(core().TT_DA_XOA))
+				.where(QBanner.banner.locationBanner.eq(core().BANNERRIGHTDOITHOAI));
 		q.orderBy(QBanner.banner.soThuTu.asc());
 		q.orderBy(QBanner.banner.ngaySua.desc());
+		q.limit(5);
 		return q;
 	}
 }

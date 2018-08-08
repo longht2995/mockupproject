@@ -371,11 +371,11 @@ public class Entry extends BaseObject<Object> {
 	//FE văn bản
 	@RequestMapping(value = "/vanban/vanbanmoi")
 	public String vanBanMoi() {
-		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/home1.zhtml&resource=vanban";
+		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/vanbanmoi.zhtml&resource=vanban";
 	}
 	@RequestMapping(value = "/vanban/vanbanmoi/{paging:[0-9]+}")
 	public String vanbanPaging(@PathVariable int paging) {
-		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/home1.zhtml&resource=vanban&activepage="+paging;
+		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/vanbanmoi.zhtml&resource=vanban&activepage="+paging;
 	}
 	
 	@RequestMapping(value = "/vanban/id/{id:[0-9]+}")

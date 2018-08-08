@@ -399,7 +399,7 @@ public class Banner extends Model<Banner> {
 		location.put("baner-right-1", "Banner trên cùng bên phải trên trang chủ");
 		location.put("baner-right-2", "Banner ở giữa bên phải trên trang chủ");
 		location.put("baner-right-3", "Banner dưới cùng bên phải trên trang chủ");
-		location.put("baner-giaotiep", "Banner đối thoại");
+		location.put("banner-giaotiep", "Banner đối thoại");
 		return location;
 	}
 	

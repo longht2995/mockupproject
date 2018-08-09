@@ -140,24 +140,22 @@ public class ThamSoService extends BasicService<ThamSo> {
 		q.where(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_THUONG_TRUC_HDND));
 		return q.fetchCount() > 0 ? q.fetchFirst() : null;
 	}
-	
+
 	public ThamSo getCacBanHDNDHuyen() {
 		JPAQuery<ThamSo> q = find(ThamSo.class).where(QThamSo.thamSo.trangThai.ne(core().TT_DA_XOA));
 		q.where(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_CAC_BAN_HDND_HUYEN));
 		return q.fetchCount() > 0 ? q.fetchFirst() : null;
 	}
-	
+
 	public ThamSo getHDNDXa() {
 		JPAQuery<ThamSo> q = find(ThamSo.class).where(QThamSo.thamSo.trangThai.ne(core().TT_DA_XOA));
 		q.where(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_HDND_XA));
 		return q.fetchCount() > 0 ? q.fetchFirst() : null;
 	}
-	
+
 	public ThamSo getGiamSatCuaHDND() {
 		JPAQuery<ThamSo> q = find(ThamSo.class).where(QThamSo.thamSo.trangThai.ne(core().TT_DA_XOA));
 		q.where(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_GIAM_SAT_CUA_HDND));
 		return q.fetchCount() > 0 ? q.fetchFirst() : null;
 	}
-	
-
 }

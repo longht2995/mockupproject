@@ -1,10 +1,10 @@
 package vn.toancauxanh.gg.model.enums;
 
 public enum ThamSoEnum {
-	CAT_ID_THUONG_TRUC_HDND("Chủ đề thường trực HĐND"),
-	CAT_ID_CAC_BAN_HDND_HUYEN("Chủ đề  các ban HĐND huyện"),
-	CAT_ID_HDND_XA("Chủ đề  HĐND Xã"),
-	CAT_ID_GIAM_SAT_CUA_HDND("Chủ đề  Giám sát của HĐND"),
+	CAT_ID_THUONG_TRUC_HDND("Thường trực HĐND"),
+	CAT_ID_CAC_BAN_HDND_HUYEN("Các ban HĐND huyện"),
+	CAT_ID_HDND_XA("HĐND Xã"),
+	CAT_ID_GIAM_SAT_CUA_HDND("Giám sát của HĐND"),
 	CAT_TRANGCHU_MENU_LEFT("Danh sách chủ đề menu trái trang chủ"),
 	CAT_ID_NGHIEN_CUU_TRAO_DOI("Chủ đề nghiên cứu và trao đổi"),
 	CAT_VAN_DE_CU_TRI_QUAN_TAM("Chủ đề vấn đề của tri quan tâm"),

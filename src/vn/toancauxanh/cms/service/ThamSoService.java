@@ -158,4 +158,20 @@ public class ThamSoService extends BasicService<ThamSo> {
 		q.where(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_GIAM_SAT_CUA_HDND));
 		return q.fetchCount() > 0 ? q.fetchFirst() : null;
 	}
+
+	// ==================================================================================
+
+//	public List<ThamSo> getListThamSo() {
+//		List<ThamSo> list = new ArrayList<ThamSo>();
+//		JPAQuery<ThamSo> q = find(ThamSo.class).where(QThamSo.thamSo.trangThai.ne(core().TT_DA_XOA));
+//		q.where(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_THUONG_TRUC_HDND)
+//				.or(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_CAC_BAN_HDND_HUYEN))
+//				.or(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_HDND_XA))
+//				.or(QThamSo.thamSo.ma.eq(ThamSoEnum.CAT_ID_GIAM_SAT_CUA_HDND)));
+//		if (q.fetchCount() > 0) {
+//			list.addAll(q.fetch());
+//		}
+//		return list;
+//	}
+
 }

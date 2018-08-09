@@ -3,6 +3,7 @@ apply="org.zkoss.bind.BindComposer">
 	<zscript><![CDATA[               
 			tinBai = entry.tinBais;
 			danhMuc = entry.danhMuc;
+			thamsos = entry.thamSos;
 			hd= entry.headerService;
 		]]></zscript>
 
@@ -15,7 +16,7 @@ apply="org.zkoss.bind.BindComposer">
                 </div>
 				 <div class="content-page">
 					<ul>
-						<li zk:forEach="${danhMuc.targetQuery.fetch()}"><i class="fas fa-caret-right">&#160;</i>&#160;${each.name}</li>
+						<li zk:forEach="${danhMuc.getChild().fetch()}"><a href="${ctxPath}/tintuc/id/${each.getId()}"><i class="fas fa-caret-right">&#160;</i>&#160;${each.name}</a></li>
 					</ul>
 				 </div>
 			</div>
@@ -27,7 +28,7 @@ apply="org.zkoss.bind.BindComposer">
 				<h4><a href="#">${danhMuc.getById() ne null ? danhMuc.getById().getName() : 'Tên chủ đề'}</a></h4>
 			</div>
 			<div class="page-content">
-				<div class="item-tintuc" zk:forEach="${tinBai.targetQuery.fetch()}">
+				<div class="item-tintuc" zk:forEach="${tinBai.targetQueryById.fetch()}">
                       <div class="item-img">
                         <img src="images/s_hdndhuyen2_1499843774462.jpg" width="183px" height="113px">
                       </div>

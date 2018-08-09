@@ -161,14 +161,14 @@ public class DanhMucService extends BasicService<DanhMuc> {
 	// dùng để kiểm tra danh sách chủ đề
 	// có rỗng không
 	public long getSizeOfCategories() {
-		String param = MapUtils.getString(argDeco(),"tukhoa","").trim();
-		String trangThai = MapUtils.getString(argDeco(),"trangthai","");
+		String param = MapUtils.getString(argDeco(), "tukhoa", "").trim();
+		String trangThai = MapUtils.getString(argDeco(), "trangthai", "");
 		JPAQuery<DanhMuc> q = find(DanhMuc.class).where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA));
-		
-		if(!trangThai.isEmpty()) {
+
+		if (!trangThai.isEmpty()) {
 			q.where(QDanhMuc.danhMuc.trangThai.eq(trangThai));
 		}
-		if(!param.isEmpty()) {
+		if (!param.isEmpty()) {
 			q.where(QDanhMuc.danhMuc.name.toLowerCase().contains(param.toLowerCase()));
 		}
 		return q.fetchCount();
@@ -180,7 +180,7 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		JPAQuery<DanhMuc> q = find(DanhMuc.class);
 		q.where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA)).where(QDanhMuc.danhMuc.parent.isNull());
 		q.orderBy(QDanhMuc.danhMuc.soThuTu.asc());
-		
+
 		List<DanhMuc> list = new ArrayList<DanhMuc>();
 		if (q.fetchCount() > 0) {
 			list = q.fetch();
@@ -222,7 +222,7 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		if (self != null && !self.noId()) {
 			q.where(QDanhMuc.danhMuc.id.ne(self.getId()));
 		}
-		
+
 		List<DanhMuc> list = new ArrayList<DanhMuc>();
 		if (q.fetchCount() > 0) {
 			list = q.fetch();
@@ -355,6 +355,18 @@ public class DanhMucService extends BasicService<DanhMuc> {
 					.where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA).and(QDanhMuc.danhMuc.parent.id.eq(parentId))
 							.and(QDanhMuc.danhMuc.trangThai.eq(core().TT_AP_DUNG)));
 			return q.orderBy(QDanhMuc.danhMuc.soThuTu.asc());
+		}
+		return find(DanhMuc.class).where(QDanhMuc.danhMuc.id.eq(0l));
+	}
+
+	public JPAQuery<DanhMuc> getChild() {
+		long chuDe = MapUtils.getLongValue(argDeco(), "cat");
+
+		if (chuDe > 0) {
+			JPAQuery<DanhMuc> q = find(DanhMuc.class).where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA)
+					.and(QDanhMuc.danhMuc.parent.id.eq(chuDe)).and(QDanhMuc.danhMuc.trangThai.eq(core().TT_AP_DUNG)));
+			System.out.println("ffffffff" + q.fetchCount());
+			return q.fetchCount() > 0 ? q.orderBy(QDanhMuc.danhMuc.soThuTu.asc()) : q.where(QDanhMuc.danhMuc.id.eq(chuDe));
 		}
 		return find(DanhMuc.class).where(QDanhMuc.danhMuc.id.eq(0l));
 	}

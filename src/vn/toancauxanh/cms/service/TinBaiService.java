@@ -199,4 +199,25 @@ public class TinBaiService extends BasicService<TinBai> {
 
 	// ==========================================================
 
+	public JPAQuery<TinBai> getTargetQueryById() {
+		String paramTuKhoa = MapUtils.getString(argDeco(), Labels.getLabel("param.tukhoa"), "").trim();
+		long chuDe = MapUtils.getLongValue(argDeco(), "cat");
+		
+		JPAQuery<TinBai> q = find(TinBai.class).where(QTinBai.tinBai.trangThai.ne(core().TT_DA_XOA));
+
+		if (paramTuKhoa != null && !paramTuKhoa.isEmpty()) {
+			String tukhoa = "%" + paramTuKhoa + "%";
+			q.where(QTinBai.tinBai.title.like(tukhoa).or(QTinBai.tinBai.description.like(tukhoa)));
+		}
+
+		if (chuDe > 0) {
+			DanhMuc category = em().find(DanhMuc.class, chuDe);
+			List<DanhMuc> children = find(DanhMuc.class).where(QDanhMuc.danhMuc.parent.eq(category))
+					.where(QDanhMuc.danhMuc.trangThai.eq(core().TT_AP_DUNG)).fetch();
+			q.where(QTinBai.tinBai.categories.any().in(children).or(QTinBai.tinBai.categories.contains(category)));
+		}
+
+		return q.orderBy(QTinBai.tinBai.ngayTao.desc()).limit(getPageSize())
+				.offset((getPage()-1)*getPageSize());
+	}
 }

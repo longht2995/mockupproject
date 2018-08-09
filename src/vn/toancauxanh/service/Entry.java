@@ -389,6 +389,11 @@ public class Entry extends BaseObject<Object> {
 				+ "&id=" + id;
 	}
 	
+	@RequestMapping(value = "/tintuc/id/{cat:\\d+}")
+	public String tintucId(@PathVariable long cat) {
+		return "forward:/frontend/index.zhtml?&file=/frontend/tintuc/home.zhtml&resource=tintuc&cat="+cat;
+	}
+	
 	// BE
 	@RequestMapping(value = "/cp")
 	public String cp() {

@@ -394,6 +394,12 @@ public class Entry extends BaseObject<Object> {
 				+ "/list.zul";
 	}
 	
+	// xem tin theo danh muc
+	@RequestMapping(value = "/{path}/{cat:\\d+}")
+	public String getPage(@PathVariable String path, @PathVariable long cat) {
+		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/" + path + "/home.zhtml&cat=" + cat;
+	}
+	
 	@RequestMapping(value = "/login")
 	public String dangNhapBackend() {
 		return "forward:/WEB-INF/zul/login.zul";

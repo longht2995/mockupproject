@@ -1,4 +1,5 @@
-<section xmlns:zk="zk" xmlns:z="zul">
+<section xmlns:zk="zk" xmlns:z="zul"xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" viewModel="@id('vm') @init('vn.toancauxanh.cms.service.TinBaiService')" 
+apply="org.zkoss.bind.BindComposer">
 	<zscript><![CDATA[               
 			tinBai = entry.tinBais;
 			danhMuc = entry.danhMuc;
@@ -42,9 +43,17 @@
 							<a href="#">Xem chi tiết>></a>
 						  </div>
                       </div>
-					  
                  </div>
 			</div>
+			<nav>
+			  <ul class="pagination justify-content-end">
+			    <li zk:forEach="${vm.record}" class="page-item ${vm.page eq each ? 'active' : ''}" >
+			    	</zscript>
+			    	<a class="page-link"
+			    		href="${ctxPath}/${resource}/vanbanmoi/${each}?coquanbanhanh=${coquan}&linhvuc=${linhvuc}&sokyhieu=${sokyhieu}&trichyeu=${trichyeu}">${each}</a>
+			    </li>
+			  </ul>
+			</nav>
          </div>
       </div>
 </section>

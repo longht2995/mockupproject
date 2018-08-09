@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.MapUtils;
+import org.springframework.util.SystemPropertyUtils;
 import org.zkoss.util.resource.Labels;
 
 import com.querydsl.jpa.impl.JPAQuery;
@@ -65,7 +66,8 @@ public class TinBaiService extends BasicService<TinBai> {
 			String ma = "%" + madinhdanh + "%";
 			q.where(QTinBai.tinBai.maDinhDanh.like(ma));
 		}
-		return q.orderBy(QTinBai.tinBai.ngayTao.desc());
+		return q.orderBy(QTinBai.tinBai.ngayTao.desc()).limit(getPageSize())
+				.offset((getPage()-1)*getPageSize());
 	}
 
 	public List<TinBai> getListTinBaiAndNull() {
@@ -139,4 +141,58 @@ public class TinBaiService extends BasicService<TinBai> {
 	}
 	
 	//==========================================================
+	
+	public int getPageSize() {
+		int pagesize = MapUtils.getIntValue(getArg(), 5,
+				5);
+		if (pagesize == 0) {
+			pagesize = 5;
+		}
+		return pagesize;
+	}
+	
+	public int getPage() {
+		int page = MapUtils.getIntValue(argDeco(), Labels.getLabel("param.activepage"), 1);
+		return page;
+	}
+	
+	public long getSizeTotal() {
+		return getTargetQuery().fetchCount();
+	}
+	
+	public List<Integer> getRecord() {
+		List<Integer> list = new ArrayList<Integer>();
+		int currentpage = getPage();
+		int totalpage;
+		totalpage = 1;
+		float total = getSizeTotal()/getPageSize();
+		if(getSizeTotal()%getPageSize()>0) {
+			totalpage = (int) total +1;
+		}else {
+			totalpage= (int)total;
+		}
+		if(totalpage==1) return list;
+		int range =5;
+		int min =0;
+		int max = 0;
+		if(totalpage<= range) {
+			min = 1;
+			max = totalpage;
+		}else {
+			min = currentpage-((range/2)+1);
+			max = currentpage+((range/2)-1);
+			if(min < 1) {
+				min = 1;
+				max = range;
+			}
+			else if(max > totalpage) {
+				max = totalpage;
+				min = (totalpage-range)+1;
+			}
+		}
+		for(int i = min;i<=max;i++) {
+			list.add(i);
+		}
+		return list;
+	}
 }

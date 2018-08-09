@@ -53,7 +53,7 @@
 	</n:img>
 	<div class="right-content">
 		<div class="title-right">
-			<a href="${ctxPath}/vanban">VĂN BẢN MỚI</a>
+			<a href="${ctxPath}/vanban/vanbanmoi">VĂN BẢN MỚI</a>
 		</div>
 		<marquee onmouseover="this.stop();" onmouseout="this.start();"
 			behavior="alternate" scrollamount="2" direction="up"
@@ -96,7 +96,7 @@
 						</n:source>
 					</video>
 					<a zk:if="${!forEachStatus.first}"
-						href="${ctxPath}/video/${each.chuDeVideo.id}/id/${each.id}">
+						href="${ctxPath}/video/${each.chuDeVideo.id}/${each.alias}/${each.id}">
 						${vd.tieuDe}
 					</a>
 				</div>

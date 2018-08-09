@@ -145,6 +145,13 @@ public class VaiTro extends Model<VaiTro> {
 	public Set<String> getQuyenAllMacDinhs() {
 		Set<String> quyens1 = new HashSet<>();
 		
+		quyens1.add(core().BAIVIETTHEM);
+		quyens1.add(core().BAIVIETSUA);
+		quyens1.add(core().BAIVIETXEM);
+		quyens1.add(core().BAIVIETLIST);
+		quyens1.add(core().BAIVIETXOA);
+		quyens1.add(core().BAIVIETXUATBAN);
+		
 		quyens1.add(core().VAITROTHEM);
 		quyens1.add(core().VAITROLIST);
 		quyens1.add(core().VAITROSUA);
@@ -193,6 +200,36 @@ public class VaiTro extends Model<VaiTro> {
 		quyens1.add(core().VANBANLIST);
 		quyens1.add(core().VANBANXOA);
 		
+		quyens1.add(core().LOAIVANBANTHEM);
+		quyens1.add(core().LOAIVANBANSUA);
+		quyens1.add(core().LOAIVANBANXEM);
+		quyens1.add(core().LOAIVANBANLIST);
+		quyens1.add(core().LOAIVANBANXOA);
+		
+		quyens1.add(core().LINHVUCVANBANTHEM);
+		quyens1.add(core().LINHVUCVANBANSUA);
+		quyens1.add(core().LINHVUCVANBANXEM);
+		quyens1.add(core().LINHVUCVANBANLIST);
+		quyens1.add(core().LINHVUCVANBANXOA);
+		
+		quyens1.add(core().COQUANBANHANHTHEM);
+		quyens1.add(core().COQUANBANHANHSUA);
+		quyens1.add(core().COQUANBANHANHXEM);
+		quyens1.add(core().COQUANBANHANHLIST);
+		quyens1.add(core().COQUANBANHANHXOA);
+		
+		quyens1.add(core().LINHVUCHOIDAPTHEM);
+		quyens1.add(core().LINHVUCHOIDAPSUA);
+		quyens1.add(core().LINHVUCHOIDAPXEM);
+		quyens1.add(core().LINHVUCHOIDAPLIST);
+		quyens1.add(core().LINHVUCHOIDAPXOA);
+		
+		quyens1.add(core().CAPBANHANHTHEM);
+		quyens1.add(core().CAPBANHANHSUA);
+		quyens1.add(core().CAPBANHANHXEM);
+		quyens1.add(core().CAPBANHANHLIST);
+		quyens1.add(core().CAPBANHANHXOA);
+		
 		quyens1.add(core().QUANTRIHETHONGLIST);
 		
 		quyens1.add(core().CATEGORYTHEM);
@@ -200,13 +237,6 @@ public class VaiTro extends Model<VaiTro> {
 		quyens1.add(core().CATEGORYXEM);
 		quyens1.add(core().CATEGORYLIST);
 		quyens1.add(core().CATEGORYXOA);
-		
-		quyens1.add(core().BAIVIETTHEM);
-		quyens1.add(core().BAIVIETSUA);
-		quyens1.add(core().BAIVIETXEM);
-		quyens1.add(core().BAIVIETLIST);
-		quyens1.add(core().BAIVIETXOA);
-		quyens1.add(core().BAIVIETXUATBAN);
 		
 		quyens1.add(core().THONGKELIST);
 		

@@ -27,7 +27,7 @@
 				<vlayout>
 					<combobox model="@load(chudevideos.listChuDeVideoAndNull)"
 						selectedItem="@bind(vm.chuDeVideo) @save(vm.chuDeVideo, before={'saveVideo'} )@validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')"
-						placeholder="Chọn chủ đề">
+						placeholder="Chọn chủ đề" readonly="true">
 						<template name="model">
 							<comboitem label="@load(each.tenChuDe eq null ? 'Chọn chủ đề' : each.tenChuDe)"/>
 						</template>

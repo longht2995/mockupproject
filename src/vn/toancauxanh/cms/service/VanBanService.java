@@ -25,10 +25,10 @@ import vn.toancauxanh.service.BasicService;
 public class VanBanService extends BasicService<VanBan>{
 	public JPAQuery<VanBan> getTargetQuery(){
 		String tukhoa = MapUtils.getString(argDeco(),Labels.getLabel("param.tukhoa"),"").trim();
-		Long loaivanban = (Long) argDeco().get(Labels.getLabel("param.loaivanban"));
-		Long linhvuc = (Long) argDeco().get(Labels.getLabel("param.linhvuc"));
-		Long coquanbanhanh = (Long) argDeco().get(Labels.getLabel("param.coquanbanhanh"));
-		Long capbanhanh = (Long) argDeco().get(Labels.getLabel("param.capbanhanh"));
+		Long loaivanban = MapUtils.getLongValue(argDeco(),Labels.getLabel("param.loaivanban"),0);
+		Long linhvuc = MapUtils.getLongValue(argDeco(),Labels.getLabel("param.linhvuc"),0);
+		Long coquanbanhanh = MapUtils.getLongValue(argDeco(),Labels.getLabel("param.coquanbanhanh"),0);
+		Long capbanhanh = MapUtils.getLongValue(argDeco(),Labels.getLabel("param.capbanhanh"),0);
 		String trangthaixuatban = MapUtils.getString(argDeco(),Labels.getLabel("param.trangthai"),"").trim();
 		Date from = (Date) argDeco().get(Labels.getLabel("param.tungay"));
 		Date to = (Date) argDeco().get(Labels.getLabel("param.denngay"));
@@ -38,20 +38,24 @@ public class VanBanService extends BasicService<VanBan>{
 			q.where(QVanBan.vanBan.soKyHieu.like("%"+tukhoa+"%")
 				.or(QVanBan.vanBan.trichYeu.like("%"+tukhoa+"%")));
 		}
-		if(loaivanban!=null) {
+		if(loaivanban!=0) {
 			q.where(QVanBan.vanBan.loaiVanBan.id.eq(loaivanban));
 		}
-		if(linhvuc!=null) {
+		if(linhvuc!=0) {
 			q.where(QVanBan.vanBan.linhVucVanBan.id.eq(linhvuc));
 		}
-		if(coquanbanhanh!=null) {
+		if(coquanbanhanh!=0) {
 			q.where(QVanBan.vanBan.coQuanBanHanh.id.eq(coquanbanhanh));
 		}
-		if(capbanhanh!=null) {
+		if(capbanhanh!=0) {
 			q.where(QVanBan.vanBan.capBanHanh.id.eq(capbanhanh));
 		}
-		if(trangthaixuatban!=null && !trangthaixuatban.isEmpty()) {
-			q.where(QVanBan.vanBan.trangThai.eq(trangthaixuatban));
+		if(!"".equals(trangthaixuatban)){
+			if("true".equals(trangthaixuatban)) {
+				q.where(QVanBan.vanBan.xuatBan.eq(true));
+			}else {
+				q.where(QVanBan.vanBan.xuatBan.eq(false));
+			}
 		}
 		if(from!=null) {
 			q.where(QVanBan.vanBan.ngayBanHanh.goe(from));

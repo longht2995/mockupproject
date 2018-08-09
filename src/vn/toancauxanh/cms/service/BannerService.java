@@ -38,26 +38,6 @@ public class BannerService extends BasicService<Banner> {
 		q.orderBy(QBanner.banner.ngaySua.desc());
 		return q;
 	}
-	
-	public JPAQuery<Banner> getBannerDoiThoaiNho() {
-		String paramImage = MapUtils.getString(argDeco(),Labels.getLabel("param.tukhoa"),"").trim();
-		String trangThai = MapUtils.getString(argDeco(),Labels.getLabel("param.trangthai"),"");
-		
-		JPAQuery<Banner> q = find(Banner.class)
-				.where(QBanner.banner.trangThai.ne(core().TT_DA_XOA));
-		if (paramImage != null && !paramImage.isEmpty()) {
-			String tukhoa = "%" + paramImage + "%";
-			q.where(QBanner.banner.title.like(tukhoa)
-				.or(QBanner.banner.description.like(tukhoa)));
-		}
-		if (!trangThai.isEmpty()) {
-			q.where(QBanner.banner.trangThai.eq(trangThai));
-		}
-		q.orderBy(QBanner.banner.soThuTu.asc());
-		q.orderBy(QBanner.banner.ngaySua.desc());
-		return q;
-	}
-	
 	public String getImg() {
 		return img;
 	}
@@ -144,9 +124,6 @@ public class BannerService extends BasicService<Banner> {
 			return true;
 		}
 		return false;
-	}
-	public List<Object> getListProduct() {
-		return null;
 	}
 	public JPAQuery<Banner> getTargetQueryBannerGiaoTiep() {
 		JPAQuery<Banner> q = find(Banner.class)

@@ -55,7 +55,6 @@ import vn.toancauxanh.model.VaiTro;
 @Controller
 public class Entry extends BaseObject<Object> {
 	static Entry instance;
-
 	@Value("${trangthai.apdung}")
 	public String TT_AP_DUNG = "";
 	@Value("${trangthai.daxoa}")
@@ -115,6 +114,9 @@ public class Entry extends BaseObject<Object> {
 	@Value("${url.hoidap}")
 	public String HOIDAP = "";
 	
+	@Value("${url.linhvuchoidap}")
+	public String LINHVUCHOIDAP = "";
+	
 	@Value("${url.chudevideo}")
 	public String CHUDEVIDEO = "";
 	
@@ -150,6 +152,18 @@ public class Entry extends BaseObject<Object> {
 	
 	@Value("${url.vanban}")
 	public String VANBAN = "";
+	
+	@Value("${url.linhvucvanban}")
+	public String LINHVUCVANBAN = "";
+	
+	@Value("${url.loaivanban}")
+	public String LOAIVANBAN = "";
+	
+	@Value("${url.coquanbanhanh}")
+	public String COQUANBANHANH = "";
+	
+	@Value("${url.capbanhanh}")
+	public String CAPBANHANH = "";
 	
 	@Value("${url.chude}")
 	public String CATEGORY = "";
@@ -194,6 +208,17 @@ public class Entry extends BaseObject<Object> {
 	@Value("${url.hoidap}" + ":" + "${action.xuatban}")
 	public String HOIDAPXUATBAN = "";
 
+	@Value("${url.linhvuchoidap}" + ":" + "${action.xem}")
+	public String LINHVUCHOIDAPXEM = "";
+	@Value("${url.linhvuchoidap}" + ":" + "${action.them}")
+	public String LINHVUCHOIDAPTHEM = "";
+	@Value("${url.linhvuchoidap}" + ":" + "${action.list}")
+	public String LINHVUCHOIDAPLIST = "";
+	@Value("${url.linhvuchoidap}" + ":" + "${action.xoa}")
+	public String LINHVUCHOIDAPXOA = "";
+	@Value("${url.linhvuchoidap}" + ":" + "${action.sua}")
+	public String LINHVUCHOIDAPSUA = "";
+	
 	@Value("${url.chudevideo}" + ":" + "${action.xem}")
 	public String CHUDEVIDEOXEM = "";
 	@Value("${url.chudevideo}" + ":" + "${action.them}")
@@ -215,6 +240,8 @@ public class Entry extends BaseObject<Object> {
 	public String VIDEOXOA = "";
 	@Value("${url.video}" + ":" + "${action.sua}")
 	public String VIDEOSUA = "";
+	@Value("${url.video}" + ":" + "${action.xuatban}")
+	public String VIDEOXUATBAN = "";
 	
 	@Value("${url.thongbao}" + ":" + "${action.xem}")
 	public String THONGBAOXEM = "";
@@ -248,6 +275,50 @@ public class Entry extends BaseObject<Object> {
 	public String VANBANXOA = "";
 	@Value("${url.vanban}" + ":" + "${action.sua}")
 	public String VANBANSUA = "";
+	
+	@Value("${url.linhvucvanban}" + ":" + "${action.xem}")
+	public String LINHVUCVANBANXEM = "";
+	@Value("${url.linhvucvanban}" + ":" + "${action.them}")
+	public String LINHVUCVANBANTHEM = "";
+	@Value("${url.linhvucvanban}" + ":" + "${action.list}")
+	public String LINHVUCVANBANLIST = "";
+	@Value("${url.linhvucvanban}" + ":" + "${action.xoa}")
+	public String LINHVUCVANBANXOA = "";
+	@Value("${url.linhvucvanban}" + ":" + "${action.sua}")
+	public String LINHVUCVANBANSUA = "";
+	
+	@Value("${url.loaivanban}" + ":" + "${action.xem}")
+	public String LOAIVANBANXEM = "";
+	@Value("${url.loaivanban}" + ":" + "${action.them}")
+	public String LOAIVANBANTHEM = "";
+	@Value("${url.loaivanban}" + ":" + "${action.list}")
+	public String LOAIVANBANLIST = "";
+	@Value("${url.loaivanban}" + ":" + "${action.xoa}")
+	public String LOAIVANBANXOA = "";
+	@Value("${url.loaivanban}" + ":" + "${action.sua}")
+	public String LOAIVANBANSUA = "";
+	
+	@Value("${url.coquanbanhanh}" + ":" + "${action.xem}")
+	public String COQUANBANHANHXEM = "";
+	@Value("${url.coquanbanhanh}" + ":" + "${action.them}")
+	public String COQUANBANHANHTHEM = "";
+	@Value("${url.coquanbanhanh}" + ":" + "${action.list}")
+	public String COQUANBANHANHLIST = "";
+	@Value("${url.coquanbanhanh}" + ":" + "${action.xoa}")
+	public String COQUANBANHANHXOA = "";
+	@Value("${url.coquanbanhanh}" + ":" + "${action.sua}")
+	public String COQUANBANHANHSUA = "";
+	
+	@Value("${url.capbanhanh}" + ":" + "${action.xem}")
+	public String CAPBANHANHXEM = "";
+	@Value("${url.capbanhanh}" + ":" + "${action.them}")
+	public String CAPBANHANHTHEM = "";
+	@Value("${url.capbanhanh}" + ":" + "${action.list}")
+	public String CAPBANHANHLIST = "";
+	@Value("${url.capbanhanh}" + ":" + "${action.xoa}")
+	public String CAPBANHANHXOA = "";
+	@Value("${url.capbanhanh}" + ":" + "${action.sua}")
+	public String CAPBANHANHSUA = "";
 	
 	@Value("${url.chude}" + ":" + "${action.xem}")
 	public String CATEGORYXEM = "";
@@ -292,7 +363,7 @@ public class Entry extends BaseObject<Object> {
 
 	// aend
 	public String[] getRESOURCES() {
-		return new String[] { NGUOIDUNG, VAITRO, HOIDAP, CHUDEVIDEO, VIDEO, THONGBAO, BANNER, VANBAN, CATEGORY,BAIVIET};
+		return new String[] { NGUOIDUNG, VAITRO, HOIDAP, CHUDEVIDEO, VIDEO, THONGBAO, BANNER, VANBAN, CATEGORY,BAIVIET, LOAIVANBAN, LINHVUCVANBAN, COQUANBANHANH, CAPBANHANH, LINHVUCHOIDAP};
 	}
 
 	public String[] getACTIONS() {
@@ -375,7 +446,7 @@ public class Entry extends BaseObject<Object> {
 	}
 	@RequestMapping(value = "/vanban/vanbanmoi/{paging:[0-9]+}")
 	public String vanbanPaging(@PathVariable int paging) {
-		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/vanbanmoi.zhtml&resource=vanban&activepage="+paging;
+		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/vanbanmoi.zhtml&resource=vanban&cat=1&activepage="+paging;
 	}
 	
 	@RequestMapping(value = "/vanban/id/{id:[0-9]+}")
@@ -386,7 +457,7 @@ public class Entry extends BaseObject<Object> {
 	// BE
 	@RequestMapping(value = "/cp")
 	public String cp() {
-		return "forward:/WEB-INF/zul/home1.zul?resource=baiviet&action=lietke&file=/WEB-INF/zul/baiviet/list.zul&macdinh=home";
+		return "forward:/WEB-INF/zul/home1.zul?resource=tinbai&action=lietke&file=/WEB-INF/zul/tinbai/list.zul&macdinh=home";
 	}
 	
 	@RequestMapping(value = "/cp/{path:.+$}")

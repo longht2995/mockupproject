@@ -10,10 +10,10 @@
 		</div>
 		<nav class="navbar navbar-expand-md navbar-light bg-nav">
         <div class="container">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+		    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#showmenu" aria-controls="#showmenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarToggler01">
+          <div class="collapse navbar-collapse" id="showmenu">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                 <a class="${resource eq ' ' ? 'nav-link active': 'nav-link'}" href="${ctxPath}/">Trang chủ</a>
@@ -33,18 +33,16 @@
                 </div>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="#"  id="navbardrop1">Tương tác cử tri</a>
+              	<a class="nav-link" href="#">Hoạt động nhà nước</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Kênh trả lời ý kiến cử tri</a>
-                  <a class="dropdown-item" href="#">Kênh kết quả giải quyết đơn thư</a>
-                  <a class="dropdown-item" href="#">Kênh đối thoại trực tuyến</a>
+                  <a class="dropdown-item" href="#">Hoạt động khối Đảng</a>
+                  <a class="dropdown-item" href="#">Hoạt động khối Đoàn thể - Mặt trận</a>
+                  <a class="dropdown-item" href="#">Hoạt động khối Ủy ban</a>
+                  <a class="dropdown-item" href="#">Hoạt động phòng ban</a>
+                  <a class="dropdown-item" href="#">Hoạt động phường</a>
+                  <a class="dropdown-item" href="#">Hoạt động Doanh nghiệp</a>
+                  <a class="dropdown-item" href="#">Hoạt động HĐND</a>
                 </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Hoạt động chỉ đạo điều hành</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Đại biểu HĐND</a>
               </li>
               <li class="nav-item dropdown" zk:if="${danhMuc.chuDeLienHe eq null ? false : true}">
                 <a class="nav-link" href="file:///C:/Users/Yuu/Desktop/chính%20phủ/index1.html">${danhMuc.chuDeLienHe.name}</a>
@@ -61,4 +59,3 @@
         </div>
       </nav>
  </header>
- 

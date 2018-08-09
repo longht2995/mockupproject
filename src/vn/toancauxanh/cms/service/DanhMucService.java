@@ -236,40 +236,6 @@ public class DanhMucService extends BasicService<DanhMuc> {
 	}
 
 	// =================================================================================================
-
-	public void fixSoThuTu() {
-		int i = 1;
-		for (DanhMuc category : getList()) {
-			category.setSoThuTu(i);
-			category.save();
-			int j = 1;
-			for (DanhMuc cat : getDanhMucCon(category)) {
-				if (cat.getParent().equals(category)) {
-					cat.setSoThuTu(j);
-					cat.save();
-					int idx = 1;
-					for (DanhMuc c : getDanhMucCon(cat)) {
-						if (c.getParent().equals(cat)) {
-							c.setSoThuTu(idx);
-							c.save();
-							int k = 1;
-							for (DanhMuc a : getDanhMucCon(c)) {
-								if (a.getParent().equals(c)) {
-									a.setSoThuTu(k);
-									a.save();
-									k++;
-								}
-							}
-							idx++;
-						}
-					}
-					j++;
-				}
-			}
-			i++;
-		}
-	}
-
 	@Command
 	public void clickButton(@BindingParam("model") final List<DanhMuc> model) {
 		if (strUpdate.equals("Thứ tự")) {

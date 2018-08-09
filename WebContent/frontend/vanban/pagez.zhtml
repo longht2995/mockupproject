@@ -1,22 +1,4 @@
 <section xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer">
-	<style>
-		table tr th{
-			color:black;
-		}
-		table tr{
-			font-size:13px;
-		}
-		table tr td{
-			text-align:left;
-		}
-		h5{
-			font-size:15px;
-		}
-		h4{
-			font-size:17px;
-			font-weight:700;
-		}
-	</style>
 	<zscript><![CDATA[
 	                  vanbans = entry.vanBans;
 	                  vanban = vanbans.getTargetQueryById().fetchFirst();
@@ -46,43 +28,60 @@
 					<h5>Quyết định số ${vanban.soKyHieu} của ${vanban.coQuanBanHanh.tenCoQuan} : ${vanban.trichYeu}</h5>
 					<table zk:if="${vanban.checkId()}" class="table table-bordered table-sm" >
 					<tr>
-						<td>Số ký hiệu</th>
-						<td>${vanban.soKyHieu}</th>
+						<th width="20%">Số ký hiệu</th>
+						<td>${vanban.soKyHieu}</td>
 					  </tr>
 					  <tr>
-						<td>Cơ quan ban hành</th>
-						<td>${vanban.coQuanBanHanh.tenCoQuan}</th>
+						<th>Cơ quan ban hành</th>
+						<td>${vanban.coQuanBanHanh.tenCoQuan}</td>
 					  </tr>
 					  <tr>
-						<td>Loại văn bản</th>
-						<td>${vanban.loaiVanBan.tenLoai}</th>
+						<th>Loại văn bản</th>
+						<td>${vanban.loaiVanBan.tenLoai}</td>
 					  </tr>
 					  <tr>
-						<td>Ngày ban hành</th>
-						<td>${vanban.ngayBanHanh}</th>
+						<th>Ngày ban hành</th>
+						<td>${vanban.ngayBanHanh}</td>
 					  </tr>
 					  <tr>
-					  	<td>Ngày có hiệu lực</th>
+					  	<th>Ngày có hiệu lực</th>
 						<td>${vanban.ngayHieuLuc}</td>
 					  </tr>
 					  <tr>
-						<td>Người ký</th>
-						<td>${vanban.nguoiKy}</th>
+						<th>Người ký</th>
+						<td>${vanban.nguoiKy}</td>
 					  </tr>
 					  <tr>
-						<td class="align-baseline">Xem văn bản</th>
-						<td class="align-baseline"><a href="/files${vanban.file.fileUrl}"><i class="fas fa-eye"></i></a></th>
+						<th class="align-baseline">Xem văn bản</th>
+						<td class="align-baseline"><a href="/files${vanban.file.fileUrl}"><i class="fas fa-eye"></i></a></td>
 					  </tr>
 				</table>
 				</div>
-				
 				<div zk:if="${list.size()>0}">
 					<h4>VĂN BẢN KHÁC</h4>
 					<ul>
-						<li zk:forEach="${list}"><a href="${ctxPath}/${resource}/id/${each.id}">${each.trichYeu}</a></li>
+						<li zk:forEach="${list}"><a style="font-size:13px;" href="${ctxPath}/${resource}/id/${each.id}">${each.trichYeu}</a></li>
 					</ul>
 				</div>
 			</div>
          </div>
       </div>
+      <style>
+		table tr th{
+			color:black;
+		}
+		table tr{
+			font-size:13px;
+		}
+		table tr td{
+			text-align:left;
+		}
+		h5{
+			font-size:15px;
+		}
+		h4{
+			font-size:17px;
+			font-weight:700;
+		}
+	</style>
 </section>

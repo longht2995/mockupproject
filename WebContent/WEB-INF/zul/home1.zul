@@ -107,21 +107,77 @@
 			      	</div>
 				</n:nav>
 			</n:header>
-		  	<!-- Left side column. contains the logo and sidebar -->
 		  	<n:aside class="main-sidebar" >
 			    <n:a href="javascript:void(0)"
 			    	class="sidebar-toggle" data-toggle="offcanvas" role="button">
 				    	<n:i class="fa fa-caret-left lf " style="font-size: 25px;"></n:i>
 				    	<n:i class="fa fa-caret-right rh " style="font-size: 25px;"></n:i>
 				    </n:a>
-		    	<!-- sidebar: style can be found in sidebar.less -->
 	    		<n:section class="sidebar">
-		      		<!-- Sidebar user panel -->
-			      				      
-			      	<!-- /.search form -->
-			      	<!-- sidebar menu: : style can be found in sidebar.less -->
 			      	<n:ul class="sidebar-menu">
-			      		
+			      		<n:li zk:if="${chuakhoa and chuakichhoat and 
+		        			(entry.quyen.baiviet_lietke || entry.quyen.chude_lietke || entry.quyen.chudevideo_lietke || entry.quyen.video_lietke || entry.quyen.banner_lietke)}" 
+		        			class="${resource eq 'tinbai' || resource eq 'chude' || resource eq 'chudevideo' || resource eq 'video' || resource eq 'banner'? 'active' : ''}">
+					        <n:a href="javascript:void(0)">
+					        	<n:i class="fa fa-users"></n:i> <n:span>Quản lý Website</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
+					        </n:a>
+			          		<n:ul class="treeview-menu">
+				            	<n:li zk:if="${entry.quyen.baiviet_lietke}" class="${resource eq 'tinbai' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/tinbai"><n:i class="fa fa-gear"></n:i> Quản lý bài viết</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.chude_lietke}" class="${resource eq 'chude' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/chude"><n:i class="fa fa-gear"></n:i> Quản lý chủ đề</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.chudevideo_lietke}" class="${resource eq 'chudevideo' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/chudevideo"><n:i class="fa fa-gear"></n:i> Quản lý chủ đề video</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.video_lietke}" class="${resource eq 'video' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/video"><n:i class="fa fa-gear"></n:i> Quản lý video</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.banner_lietke}" class="${resource eq 'banner' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/banner"><n:i class="fa fa-gear"></n:i> Quản lý banner</n:a>
+								</n:li>
+			          		</n:ul>
+		        		</n:li>
+			      		<n:li zk:if="${chuakhoa and chuakichhoat and 
+		        			(entry.quyen.vanban_lietke || entry.quyen.vanban_lietke)}" 
+		        			class="${resource eq 'vanban' || resource eq 'loaivanban' || resource eq 'linhvucvanban' || resource eq 'coquanbanhanh' || resource eq 'capbanhanh'? 'active' : ''}">
+					        <n:a href="javascript:void(0)">
+					        	<n:i class="fa fa-users"></n:i> <n:span>Văn bản quy phạm</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
+					        </n:a>
+			          		<n:ul class="treeview-menu">
+				            	<n:li zk:if="${entry.quyen.vanban_lietke}" class="${resource eq 'vanban' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/vanban"><n:i class="fa fa-gear"></n:i> Quản lý văn bản</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.loaivanban_lietke}" class="${resource eq 'loaivanban' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/loaivanban"><n:i class="fa fa-gear"></n:i> Quản lý loại văn bản</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.linhvucvanban_lietke}" class="${resource eq 'linhvucvanban' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/linhvucvanban"><n:i class="fa fa-gear"></n:i> Quản lý lĩnh vực</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.coquanbanhanh_lietke}" class="${resource eq 'coquanbanhanh' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/coquanbanhanh"><n:i class="fa fa-gear"></n:i> Quản lý cơ quan ban hành</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.capbanhanh_lietke}" class="${resource eq 'capbanhanh' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/capbanhanh"><n:i class="fa fa-gear"></n:i> Quản lý cấp ban hành</n:a>
+								</n:li>
+			          		</n:ul>
+		        		</n:li>
+		        		<n:li zk:if="${chuakhoa and chuakichhoat and 
+		        			(entry.quyen.hoidap_lietke || entry.quyen.linhvuchoidap_lietke)}" 
+		        			class="${resource eq 'hoidap' || resource eq 'linhvuchoidap' ? 'active' : ''}">
+					        <n:a href="javascript:void(0)">
+					        	<n:i class="fa fa-users"></n:i> <n:span>Tương tác</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
+					        </n:a>
+			          		<n:ul class="treeview-menu">
+				            	<n:li zk:if="${entry.quyen.hoidap_lietke}" class="${resource eq 'hoidap' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/hoidap"><n:i class="fa fa-gear"></n:i> Quản lý hỏi đáp</n:a>
+								</n:li>
+								<n:li zk:if="${entry.quyen.linhvuchoidap_lietke}" class="${resource eq 'linhvuchoidap' ? 'active' : ''}">
+									<n:a href="${ctxPath}/cp/linhvuchoidap"><n:i class="fa fa-gear"></n:i> Quản lý lĩnh vực hỏi đáp</n:a>
+								</n:li>
+			          		</n:ul>
+		        		</n:li>
 		        		<n:li zk:if="${chuakhoa and chuakichhoat and 
 		        			(entry.quyen.nguoidung_lietke || entry.quyen.vaitro_lietke)}" 
 		        			class="${resource eq 'nguoidung' || resource eq 'vaitro' ? 'active' : ''}">

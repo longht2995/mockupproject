@@ -30,15 +30,12 @@
 				<hlayout class="control-label">
 					<x:label>
 						Mô tả
-						<n:small class="required">*</n:small>
 					</x:label>
 				</hlayout>
 				<vlayout>
 					<textbox class="form-control" width="100%"
 						maxlength="255"
-						value="@load(vm.mota) @save(vm.mota, before={'saveChuDe'}) @validator('vn.toancauxanh.vm.BaseValid', constraint='no empty')" />
-					<label zclass="error"
-						value="@load(vmsgs[self.previousSibling])" />
+						value="@bind(vm.mota)"/>
 				</vlayout>
 				<div class="form-group">
 						<checkbox label="Áp dụng" checked="@bind(vm.checkApDung)" />

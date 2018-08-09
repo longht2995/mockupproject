@@ -281,11 +281,6 @@ public class Entry extends BaseObject<Object> {
 	public String HETHONGXEM = "";
 	@Value("${url.hethong}" + ":" + "${action.sua}")
 	public String HETHONGSUA = "";
-
-	
-
-	
-	
 	@Value("${url.thongke}" + ":" + "${action.list}")
 	public String THONGKELIST = "";
 
@@ -382,6 +377,18 @@ public class Entry extends BaseObject<Object> {
 		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/pagez.zhtml&resource=vanban&id="+id;
 	}
 	
+	// xem tin theo danh mục
+	@RequestMapping(value = "/{path}/{cat:\\d+}")
+	public String getPage(@PathVariable String path, @PathVariable long cat) {
+		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/" + path + "/home.zhtml&cat=" + cat;
+	}
+	
+	@RequestMapping(value = "/{path:.+$}/{cat:\\d+}/id/{id:\\d+}")
+	public String newDetail(@PathVariable String path, @PathVariable Long cat, @PathVariable Long id) {
+		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/kyhop/newdetail.zhtml&cat=" + cat
+				+ "&id=" + id;
+	}
+	
 	// BE
 	@RequestMapping(value = "/cp")
 	public String cp() {
@@ -392,12 +399,6 @@ public class Entry extends BaseObject<Object> {
 	public String cp(@PathVariable String path) {
 		return "forward:/WEB-INF/zul/home1.zul?resource=" + path + "&action=lietke&file=/WEB-INF/zul/" + path
 				+ "/list.zul";
-	}
-	
-	// xem tin theo danh muc
-	@RequestMapping(value = "/{path}/{cat:\\d+}")
-	public String getPage(@PathVariable String path, @PathVariable long cat) {
-		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/" + path + "/home.zhtml&cat=" + cat;
 	}
 	
 	@RequestMapping(value = "/login")

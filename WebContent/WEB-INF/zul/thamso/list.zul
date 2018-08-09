@@ -25,13 +25,14 @@
 				<hlayout class="control-label">
 					<x:label>Chọn chủ đề cần cập nhật</x:label>
 				</hlayout>
+				
 				<combobox
 					viewModel="@id('vmm')@init('vn.toancauxanh.cms.service.DanhMucService')"
 					model="@load(vmm.listParent)"
 					selectedItem="@bind(vm.danhMucSelect)"
 					value="@load(vm.danhMucSelect eq null ? 'Chọn chủ đề' : vm.danhMucSelect.name)" width="100%">
 					<template name="model">
-						<comboitem label="@load(each.name)" />
+						<comboitem label="@load(each eq null? 'Chọn chủ đề' : each.name)" />
 					</template>
 				</combobox>
 			</div>

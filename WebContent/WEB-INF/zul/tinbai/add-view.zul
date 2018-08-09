@@ -41,17 +41,6 @@
 						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
 					</vlayout>
 				</div>
-				<!-- div zclass="form-group">
-					<hlayout class="control-label">
-						<x:label>Tiêu đề phụ</x:label>
-						<label value="" />
-					</hlayout>
-					<vlayout>
-						<textbox class="form-control" width="100%" disabled="@load(vm.ckEditorPopup)" maxlength="1000"
-							value="@bind(vm.subTitle) @save(vm.subTitle, before={'saveTinBai','xuatBan'})" />
-						<label zclass="error" value="@load(vmsgs[self.previousSibling])" />
-					</vlayout>
-				</div -->
 				
 				<div zclass="form-group">
 					<x:label>Tóm tắt</x:label>
@@ -174,13 +163,7 @@
 							value="@load(vmsgs['lblErr'])" />
 					</vlayout>
 				</div>
-				<!-- div zclass="form-group">
-					<vlayout  hflex="1">
-						<x:label>Mô tả trang</x:label>
-						<textbox width="99%" value="@bind(vm.metaDescription)" maxlength="200"
-							placeholder="Mô tả trang" height="80px" rows="2"/>
-					</vlayout>
-				</div  -->
+				
 			</div>
 		</div>
 		<div class="row box-footer">

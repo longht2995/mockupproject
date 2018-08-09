@@ -119,7 +119,7 @@
 		        			(entry.quyen.baiviet_lietke || entry.quyen.chude_lietke || entry.quyen.chudevideo_lietke || entry.quyen.video_lietke || entry.quyen.banner_lietke)}" 
 		        			class="${resource eq 'tinbai' || resource eq 'chude' || resource eq 'chudevideo' || resource eq 'video' || resource eq 'banner'? 'active' : ''}">
 					        <n:a href="javascript:void(0)">
-					        	<n:i class="fa fa-users"></n:i> <n:span>Quản lý Website</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
+					        	<n:i class="fa fa-newspaper-o"></n:i> <n:span>Quản lý Website</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
 					        </n:a>
 			          		<n:ul class="treeview-menu">
 				            	<n:li zk:if="${entry.quyen.baiviet_lietke}" class="${resource eq 'tinbai' ? 'active' : ''}">
@@ -143,7 +143,7 @@
 		        			(entry.quyen.vanban_lietke || entry.quyen.vanban_lietke)}" 
 		        			class="${resource eq 'vanban' || resource eq 'loaivanban' || resource eq 'linhvucvanban' || resource eq 'coquanbanhanh' || resource eq 'capbanhanh'? 'active' : ''}">
 					        <n:a href="javascript:void(0)">
-					        	<n:i class="fa fa-users"></n:i> <n:span>Văn bản quy phạm</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
+					        	<n:i class="fa fa-file-text-o"></n:i> <n:span>Văn bản quy phạm</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
 					        </n:a>
 			          		<n:ul class="treeview-menu">
 				            	<n:li zk:if="${entry.quyen.vanban_lietke}" class="${resource eq 'vanban' ? 'active' : ''}">
@@ -167,7 +167,7 @@
 		        			(entry.quyen.hoidap_lietke || entry.quyen.linhvuchoidap_lietke)}" 
 		        			class="${resource eq 'hoidap' || resource eq 'linhvuchoidap' ? 'active' : ''}">
 					        <n:a href="javascript:void(0)">
-					        	<n:i class="fa fa-users"></n:i> <n:span>Tương tác</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
+					        	<n:i class="fa fa-street-view"></n:i> <n:span>Tương tác cử tri</n:span> <n:i class="fa fa-angle-left pull-right"></n:i>
 					        </n:a>
 			          		<n:ul class="treeview-menu">
 				            	<n:li zk:if="${entry.quyen.hoidap_lietke}" class="${resource eq 'hoidap' ? 'active' : ''}">

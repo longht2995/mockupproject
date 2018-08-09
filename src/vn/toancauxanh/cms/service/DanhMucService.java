@@ -40,21 +40,11 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		return q.orderBy(QDanhMuc.danhMuc.ngaySua.desc());
 	}
 
-	private DanhMuc danhMuc;
-
 	private String img = "/backend/assets/img/edit.png";
 	private String hoverImg = "/backend/assets/img/edit_hover.png";
 	private String strUpdate = "Thứ tự";
 	private boolean update = true;
 	private boolean updateThanhCong = true;
-
-	public DanhMuc getDanhMuc() {
-		return danhMuc;
-	}
-
-	public void setDanhMuc(DanhMuc danhMuc) {
-		this.danhMuc = danhMuc;
-	}
 
 	public String getImg() {
 		return img;
@@ -135,9 +125,12 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		JPAQuery<DanhMuc> q = find(DanhMuc.class);
 		q.where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA)).where(QDanhMuc.danhMuc.parent.isNull());
 		q.orderBy(QDanhMuc.danhMuc.soThuTu.asc());
-		List<DanhMuc> list = q.fetch();
-		for (DanhMuc danhMuc : list) {
-			danhMuc.loadChildren();
+		List<DanhMuc> list = new ArrayList<DanhMuc>();
+		if (q.fetchCount() > 0) {
+			list = q.fetch();
+			for (DanhMuc danhMuc : list) {
+				danhMuc.loadChildren();
+			}
 		}
 		return list;
 	}
@@ -146,7 +139,11 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		JPAQuery<DanhMuc> q = find(DanhMuc.class);
 		q.where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA)).where(QDanhMuc.danhMuc.parent.isNull());
 		q.orderBy(QDanhMuc.danhMuc.soThuTu.asc());
-		List<DanhMuc> list = q.fetch();
+		List<DanhMuc> list = new ArrayList<DanhMuc>();
+		list.add(null);
+		if (q.fetchCount() > 0) {
+			list = q.fetch();
+		}
 		return list;
 	}
 
@@ -164,7 +161,16 @@ public class DanhMucService extends BasicService<DanhMuc> {
 	// dùng để kiểm tra danh sách chủ đề
 	// có rỗng không
 	public long getSizeOfCategories() {
+		String param = MapUtils.getString(argDeco(),"tukhoa","").trim();
+		String trangThai = MapUtils.getString(argDeco(),"trangthai","");
 		JPAQuery<DanhMuc> q = find(DanhMuc.class).where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA));
+		
+		if(!trangThai.isEmpty()) {
+			q.where(QDanhMuc.danhMuc.trangThai.eq(trangThai));
+		}
+		if(!param.isEmpty()) {
+			q.where(QDanhMuc.danhMuc.name.toLowerCase().contains(param.toLowerCase()));
+		}
 		return q.fetchCount();
 	}
 
@@ -174,9 +180,13 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		JPAQuery<DanhMuc> q = find(DanhMuc.class);
 		q.where(QDanhMuc.danhMuc.trangThai.ne(core().TT_DA_XOA)).where(QDanhMuc.danhMuc.parent.isNull());
 		q.orderBy(QDanhMuc.danhMuc.soThuTu.asc());
-		List<DanhMuc> list = q.fetch();
-		for (DanhMuc category : list) {
-			category.loadChildren();
+		
+		List<DanhMuc> list = new ArrayList<DanhMuc>();
+		if (q.fetchCount() > 0) {
+			list = q.fetch();
+			for (DanhMuc category : list) {
+				category.loadChildren();
+			}
 		}
 		return list;
 	}
@@ -212,12 +222,15 @@ public class DanhMucService extends BasicService<DanhMuc> {
 		if (self != null && !self.noId()) {
 			q.where(QDanhMuc.danhMuc.id.ne(self.getId()));
 		}
-
-		List<DanhMuc> list = q.fetch();
-
-		for (DanhMuc danhMuc : list) {
-			danhMuc.loadChildren();
+		
+		List<DanhMuc> list = new ArrayList<DanhMuc>();
+		if (q.fetchCount() > 0) {
+			list = q.fetch();
+			for (DanhMuc category : list) {
+				category.loadChildren();
+			}
 		}
+
 		return list;
 	}
 
@@ -236,39 +249,6 @@ public class DanhMucService extends BasicService<DanhMuc> {
 	}
 
 	// =================================================================================================
-
-	public void fixSoThuTu() {
-		int i = 1;
-		for (DanhMuc category : getList()) {
-			category.setSoThuTu(i);
-			category.save();
-			int j = 1;
-			for (DanhMuc cat : getDanhMucCon(category)) {
-				if (cat.getParent().equals(category)) {
-					cat.setSoThuTu(j);
-					cat.save();
-					int idx = 1;
-					for (DanhMuc c : getDanhMucCon(cat)) {
-						if (c.getParent().equals(cat)) {
-							c.setSoThuTu(idx);
-							c.save();
-							int k = 1;
-							for (DanhMuc a : getDanhMucCon(c)) {
-								if (a.getParent().equals(c)) {
-									a.setSoThuTu(k);
-									a.save();
-									k++;
-								}
-							}
-							idx++;
-						}
-					}
-					j++;
-				}
-			}
-			i++;
-		}
-	}
 
 	@Command
 	public void clickButton(@BindingParam("model") final List<DanhMuc> model) {

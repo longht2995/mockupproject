@@ -559,7 +559,7 @@ public class TinBai extends Asset<TinBai> {
 				entry.setTenHienThi(entry.getTenFileDinhKem());
 				// getFileEntries().clear();
 				getFileEntries().add(entry);
-
+				
 				Files.copy(baseDir, media.getStreamData());
 				if (vmsgs != null) {
 					vmsgs.clearKeyMessages("uploadbtn");

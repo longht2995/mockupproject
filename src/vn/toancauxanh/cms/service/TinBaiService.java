@@ -137,6 +137,6 @@ public class TinBaiService extends BasicService<TinBai> {
 				.where(QTinBai.tinBai.noiBat.eq(true)).orderBy(QTinBai.tinBai.ngaySua.desc());
 		return q;
 	}
-	
-	//==========================================================
+
+	// ==========================================================
 }

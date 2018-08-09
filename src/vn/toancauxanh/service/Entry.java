@@ -453,7 +453,10 @@ public class Entry extends BaseObject<Object> {
 	public String getPage(@PathVariable String path, @PathVariable long cat) {
 		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/" + path + "/home.zhtml&cat=" + cat;
 	}
-	
+	@RequestMapping(value = "/tintuc/{cat:\\d+}/{page}")
+	public String getPage1(@PathVariable String page, @PathVariable long cat) {
+		return "forward:/frontend/index.zhtml?resource=tintuc&file=/frontend/tintuc/home.zhtml&cat=" + cat+"&activepage="+page;
+	}
 	@RequestMapping(value = "/{path:.+$}/{cat:\\d+}/id/{id:\\d+}")
 	public String newDetail(@PathVariable String path, @PathVariable Long cat, @PathVariable Long id) {
 		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/kyhop/newdetail.zhtml&cat=" + cat

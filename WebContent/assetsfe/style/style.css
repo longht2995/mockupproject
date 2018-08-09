@@ -169,7 +169,8 @@ a:hover {
 	padding-top: 0;
 }
 
-.item-img {
+.item-img img {
+	max-width:183px;
 	margin-right: 10px;
 }
 
@@ -325,8 +326,8 @@ footer p {
 	.showdropdown {
 		display: none;
 	}
+	
 }
-
 @media ( max-width : 500px) {
 	.navbar-collapse{
 		padding:0 30px !important;
@@ -352,6 +353,14 @@ footer p {
 	}
 	.item-tintuc {
 		width: 100%;
+		display:flex;
+		flex-direction: column;
+		
+	}
+	.item-img img{
+		max-width:100%;
+		width:100%;
+		height:auto;
 	}
 	.tintuc-nho-noibat>.item-tintuc:first-child {
 		padding-top: 10px;

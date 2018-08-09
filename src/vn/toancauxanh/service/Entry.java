@@ -22,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -353,11 +352,6 @@ public class Entry extends BaseObject<Object> {
 	public String HETHONGXEM = "";
 	@Value("${url.hethong}" + ":" + "${action.sua}")
 	public String HETHONGSUA = "";
-
-	
-
-	
-	
 	@Value("${url.thongke}" + ":" + "${action.list}")
 	public String THONGKELIST = "";
 
@@ -452,6 +446,18 @@ public class Entry extends BaseObject<Object> {
 	@RequestMapping(value = "/vanban/id/{id:[0-9]+}")
 	public String vanbanId(@PathVariable String id) {
 		return "forward:/frontend/index.zhtml?&file=/frontend/vanban/pagez.zhtml&resource=vanban&id="+id;
+	}
+	
+	// xem tin theo danh mục
+	@RequestMapping(value = "/{path}/{cat:\\d+}")
+	public String getPage(@PathVariable String path, @PathVariable long cat) {
+		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/" + path + "/home.zhtml&cat=" + cat;
+	}
+	
+	@RequestMapping(value = "/{path:.+$}/{cat:\\d+}/id/{id:\\d+}")
+	public String newDetail(@PathVariable String path, @PathVariable Long cat, @PathVariable Long id) {
+		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/kyhop/newdetail.zhtml&cat=" + cat
+				+ "&id=" + id;
 	}
 	
 	// BE

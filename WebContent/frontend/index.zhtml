@@ -17,6 +17,8 @@
 	<zscript><![CDATA[               
 		String resource = execution.getParameter("resource");
 		entry = new vn.toancauxanh.service.BaseObject().core();
+		thamso = entry.thamSos;
+		ts = thamso.getList();
 		String ctxPath = execution.getContextPath();
 	]]></zscript>
 	  <div class="container-fluid fixpd-wrapper">

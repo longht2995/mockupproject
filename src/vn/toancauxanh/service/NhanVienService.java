@@ -66,8 +66,7 @@ public final class NhanVienService extends BasicService<NhanVien> {
 		// System.out.println("password: " + password);
 		NhanVien nhanVien = new JPAQuery<NhanVien>(em()).from(QNhanVien.nhanVien)
 				.where(QNhanVien.nhanVien.daXoa.isFalse()).where(QNhanVien.nhanVien.trangThai.ne(core().TT_DA_XOA))
-				.where(QNhanVien.nhanVien.tenDangNhap.eq(email))
-				.fetchFirst();
+				.where(QNhanVien.nhanVien.tenDangNhap.eq(email)).fetchFirst();
 		BasicPasswordEncryptor encryptor = new BasicPasswordEncryptor();
 		if (nhanVien != null
 				&& encryptor.checkPassword(password.trim() + nhanVien.getSalkey(), nhanVien.getMatKhau())) {
@@ -139,12 +138,17 @@ public final class NhanVienService extends BasicService<NhanVien> {
 		}
 		BindUtils.postNotifyChange(null, null, this, "tacGiasTimKiem");
 	}
-	public List<NhanVien> getListDaiBieuAndNull(){
-		VaiTro vaiTro = em().find(VaiTro.class, 3l);
-		List<NhanVien> listDaiBieu = find(NhanVien.class).where(QNhanVien.nhanVien.trangThai.ne(core().TT_DA_XOA)).where(QNhanVien.nhanVien.vaiTros.contains(vaiTro)).fetch();
-		List<NhanVien> list = new ArrayList<NhanVien>();
-		list.add(null);
-		list.addAll(listDaiBieu);
-		return list;
-	}
+
+//	public List<NhanVien> getListDaiBieuAndNull() {
+//		VaiTro vaiTro = em().find(VaiTro.class, 3l);
+//		List<NhanVien> listDaiBieu = new ArrayList<NhanVien>();
+//		List<NhanVien> list = new ArrayList<NhanVien>();
+//		if (vaiTro != null) {
+//			listDaiBieu = find(NhanVien.class).where(QNhanVien.nhanVien.trangThai.ne(core().TT_DA_XOA))
+//					.where(QNhanVien.nhanVien.vaiTros.contains(vaiTro)).fetch();
+//			list.add(null);
+//			list.addAll(listDaiBieu);
+//		}
+//		return list;
+//	}
 }

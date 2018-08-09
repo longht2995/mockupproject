@@ -1,11 +1,11 @@
 <section xmlns:zk="zk" xmlns:z="zul" xmlns:n="native">
 	<zscript><![CDATA[
 		homes = entry.homes;
+		thamso = entry.thamSos;
 		tinbaiPB= entry.tinBais;
 		hd= entry.headerService;
-		thamso = entry.thamSos;
 	]]></zscript>
-	<p class="date-now">Thứ Sáu, ngày 13 tháng 7 năm 2018 | 15:14 GMT+7</p>
+	<p class="date-now">${hd.currentTime}</p>
 	<div class="row">
         <div class="col-md-9 fixpadding-right">
         <n:img class="banner-left" zk:if="${homes.targetQueryBannerLeftTop.bannerUrl != null}" 

@@ -1,7 +1,11 @@
 <div xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" apply="org.zkoss.bind.BindComposer">
+<zscript><![CDATA[
+	                  banners = entry.banners;
+	]]></zscript>
 <div class="right-content">
 				<div class="title-tintuc">
-                  <span><img class="logo-title" src="images/icon-svg.svg"></span><a href="#" class="title-mg">${danhMuc.getById() ne null ? danhMuc.getById().getName() : 'Tên chủ đề'}</a>
+                  <span><img class="logo-title"
+					src="../assetsfe/images/icon-svg.svg"></span><a href="#" class="title-mg">${danhMuc.getById() ne null ? danhMuc.getById().getName() : 'Tên chủ đề'}</a>
                 </div>
 				 <div class="content-page">
 					<ul>
@@ -9,6 +13,8 @@
 					</ul>
 				 </div>
 			</div>
-          <img src="images/Banner1_1520218037287.png" width="100%">
-          <img class="banner-left" src="images/kyhopright.png" width="100%" style="margin-top:15px;">
+         <a zk:forEach="${banners.targetQueryBannerGiaoTiep.fetch()}" href="${ctxPath}${each.bannerLink}" target="${each.newTab ? '_blank' : ''}">
+		<n:img style="margin-bottom:15px;"
+          	 src="/files${each.bannerUrl}" width="100%"></n:img>
+	</a>
 </div>

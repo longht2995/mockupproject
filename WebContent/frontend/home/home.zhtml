@@ -22,9 +22,9 @@
                       	zk:forEach="${tinbaiPB.getListTinBaiSlide().limit(3).fetch()}">
                         <div zk:if="${not empty each.categories}">
                         	<n:img class="img-slide" src="/files${each.avatarImage.imageUrl}" width="100%"></n:img>
-	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" 
+	                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}" 
 	                        	class="title-noibat">${each.title}</a>
-	                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}" 
+	                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}" 
 	                        	class="baiviet-mota">${each.description}</a>
                         </div>
                       </div>
@@ -51,7 +51,7 @@
                   <div class="tintuc-nho-noibat">
                     <div class="item-tintuc" zk:forEach="${tinbaiPB.getListTinBaiSlide().offset(3).limit(5).fetch()}" zk:if="${not empty each.categories}">
                         <div class="item-content" >
-                          <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                          <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                         </div>
                     </div>
                   </div>
@@ -82,10 +82,10 @@
                         <n:img src="/files${each.avatarImage.imageUrl}" width="120px" height="80px"></n:img>
                       </div>
                       <div class="item-content text-noibat" zk:if="${forEachStatus.first}">
-                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                       <div class="item-content" zk:if="${!forEachStatus.first}">
-                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                   </div>
                 </div>
@@ -108,10 +108,10 @@
                         <n:img src="/files${each.avatarImage.imageUrl}" width="120px" height="80px"></n:img>
                       </div>
                       <div class="item-content text-noibat" zk:if="${forEachStatus.first}">
-                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                       <div class="item-content" zk:if="${!forEachStatus.first}">
-                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                   </div>
                 </div>
@@ -140,10 +140,10 @@
                         <n:img src="/files${each.avatarImage.imageUrl}" width="120px" height="80px"></n:img>
                       </div>
                       <div class="item-content text-noibat" zk:if="${forEachStatus.first}">
-                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                       <div class="item-content" zk:if="${!forEachStatus.first}">
-                        <a href="${ctxPath}/${each.categories.get(0).alias}/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
+                        <a href="${ctxPath}/tintuc/${each.categories.get(0).id}/id/${each.id}">${each.title}</a>
                       </div>
                   </div>
                 </div>

@@ -1,0 +1,31 @@
+<section xmlns:zk="zk" xmlns:z="zul"xmlns:n="native" xmlns:zk="zk" xmlns:z="zul" xmlns:w="client" viewModel="@id('vm') @init('vn.toancauxanh.cms.service.TinBaiService')" 
+apply="org.zkoss.bind.BindComposer">
+	<zscript><![CDATA[               
+			tinBai = entry.tinBais;
+			danhMuc = entry.danhMuc;
+			hd= entry.headerService;
+		]]></zscript>
+      <p class="date-now">${hd.currentTime}</p>
+      <div class="row">
+		<div class="col-md-3 fixpadding-right">
+			<z:include src="/frontend/${resource}/leftlayout.zhtml"></z:include>
+        </div>
+        <div class="col-md-9 fixpadding-left">
+			<div class="page-title">
+				<h4><a href="#">TIN TỨC</a></h4>
+			</div>
+			<div class="page-content">
+				<n:h5>${tinBai.getTinbai().title}</n:h5>
+				<n:span>${tinBai.getTinbai().dateBeginTime}</n:span>
+				<n:p>${tinBai.getTinbai().description}</n:p>
+				<n:p>${tinBai.getTinbai().content}</n:p>
+			</div>
+         </div>
+      </div>
+      <style>
+      	.page-content h5{font-weight:600;}
+      	.page-content span{font-size:13px;color:gray;}
+      	.page-content p{font-size:13px;}
+      	.page-content p>img{text-align:center !important;}
+      </style>
+</section>

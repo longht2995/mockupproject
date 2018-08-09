@@ -385,7 +385,7 @@ public class Entry extends BaseObject<Object> {
 	
 	@RequestMapping(value = "/{path:.+$}/{cat:\\d+}/id/{id:\\d+}")
 	public String newDetail(@PathVariable String path, @PathVariable Long cat, @PathVariable Long id) {
-		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/kyhop/newdetail.zhtml&cat=" + cat
+		return "forward:/frontend/index.zhtml?resource=" + path + "&file=/frontend/tintuc/detail.zhtml&cat=" + cat
 				+ "&id=" + id;
 	}
 	

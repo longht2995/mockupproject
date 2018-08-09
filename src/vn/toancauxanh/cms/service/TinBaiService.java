@@ -198,5 +198,16 @@ public class TinBaiService extends BasicService<TinBai> {
 
 
 	// ==========================================================
+	
+	// ==============xem chi tiết tin=========================
+	
+	public TinBai getTinbai(){
+		long tinbai_id = MapUtils.getLongValue(argDeco(),"id");
+		JPAQuery<TinBai> q = find(TinBai.class).where(QTinBai.tinBai.trangThai.ne(core().TT_DA_XOA)).where(QTinBai.tinBai.trangThaiSoan.eq(core().TTS_DA_DUYET));
+		if (tinbai_id > 0) {
+			q.where(QTinBai.tinBai.id.eq(tinbai_id));
+		}
+		return q.fetchCount() > 0 ? q.fetchFirst() : null;
+	}
 
 }
